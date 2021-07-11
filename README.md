@@ -59,6 +59,12 @@ BorkUtils: Created by [Michael](https://github.com/BizzyPythonBear)
 
 Everything else has been created by me, terminal, menu, etc.
 
+## Guide for Developers
+If you're a dev looking to play around with this the developer mode passwords are:
+- 559907: Opens up to dev menu
+- 559908: Goes right to dev console
+
 ## Extras
 Disclaimer: Updates come out randomly and aren't scheduled.
+
 Updates will also be a little slow, as I suck at organizing my code, so it takes a while for me to find code, update and change things, but I will definitely still be pushing updates out as fast as possible.
