@@ -1,0 +1,1262 @@
+
+import time
+import os
+import socket
+from os import system
+import sys
+
+class ErrorCodes:
+	Err1 = "Syntax Error"
+	Err2 = "Char not int"
+	Err3 = "Not on list" 
+
+def errorHandle(message, errorcode):
+	mes = message
+	err = errorcode
+	print(f"{bcolors.FAIL}" + mes + " Error code: " + err)
+
+def setupPage():
+    import os
+    import time
+    from os import system
+
+    system('clear')
+
+    with open('data/info.data', 'w') as f:
+        f.writelines("1")
+
+    print("""
+    Bear OS v1.2.4
+    Bear OS Registration
+    """)
+
+    usrname = input("Please enter your new username: ")
+    pas = input("Please enter your new password: ")
+
+    with open('data/username.pass', 'w') as f:
+        f.writelines(usrname)
+
+    with open('data/password.pass', 'w') as f:
+        f.writelines(pas)
+
+    print("Registration Complete...")
+    print("Opening Login...")
+    time.sleep(0.5)
+    loginPage()
+
+def loginPage():
+    import os
+    import time
+    import home as H
+    from os import system
+
+    system('clear')
+
+    login_pass = open('data/password.pass')
+    login_name = open('data/username.pass')
+    l_p = login_pass.read()
+    l_n = login_name.read()
+    print("""
+    Bear OS v1.2.4
+    Bear OS Login Screen
+    """)
+
+    while True:
+        log = input("Enter Password To " + l_n + " To Login: ")
+
+        if log == l_p:
+            print("Opening Home Page...")
+            time.sleep(0.5)
+            system('clear')
+            homePage()
+            break
+
+        elif log == "559907":
+            print("Developer Mode Activated...")
+            time.sleep(0.5)
+            system('clear')
+            devPage()
+            break
+
+        elif log == "559908":
+            print("Taking you to root dev console...")
+            time.sleep(0.5)
+            system('clear')
+            devTermMain()
+            break
+
+
+        else:
+            print("Wrong Passowrd To " + l_n)
+
+def gameSelect():
+		print(f"{bcolors.WARNING}Type command, 'exit' to leave")
+		print(f"""{bcolors.OKBLUE}
+		[1] Go to snake
+		[2] [COMING SOON]
+		[3] [COMING SOON]
+		""")
+
+		fff = input("[?]: ")
+
+		if fff == '1':
+			snakeDevGame()
+		elif fff == '2':
+			error("Game doesn't exist!")
+		elif fff == '3':
+			error("Game doesn't exist!")
+		elif fff == 'exit':
+			print("Going back to menu...")
+			time.sleep(1)
+			os.system('clear')
+			devPage()
+
+
+		else:
+			error("Game doesn't exist!")
+
+
+def gameMenu():
+	class bcolors:
+		HEADER = '\033[95m'
+		OKBLUE = '\033[94m'
+		OKCYAN = '\033[96m'
+		OKGREEN = '\033[92m'
+		WARNING = '\033[93m'
+		FAIL = '\033[91m'
+		ENDC = '\033[0m'
+		BOLD = '\033[1m'
+		UNDERLINE = '\033[4m'
+
+	def error(message):
+		os.system('clear')
+		print(f"{bcolors.FAIL}" + message)
+		gameSelect()
+
+	def gameSelect():
+		print(f"{bcolors.WARNING}Type command, 'exit' to leave")
+		print(f"""{bcolors.OKBLUE}
+		[1] Go to snake
+		[2] [COMING SOON]
+		[3] [COMING SOON]
+		""")
+
+		fff = input("[?]: ")
+
+		if fff == '1':
+			snakeGame()
+			os.system('clear')
+		elif fff == '2':
+			error("Game doesn't exist!")
+		elif fff == '3':
+			error("Game doesn't exist!")
+		elif fff == 'exit':
+			print("Going back to menu...")
+			time.sleep(1)
+			os.system('clear')
+			homePage()
+
+		else:
+			error("Game doesn't exist!")
+import home as H
+import os
+import time
+
+login_pass = open('data/password.pass')
+login_name = open('data/username.pass')
+l_p = login_pass.read()
+l_n = login_name.read()
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def terminalMain():
+    os.system('clear')
+    print("Welcome to the Bear OS Terminal")
+    print("Ver 1.2.4")
+    def helpCom():
+        os.system('clear')
+        print("""
+        Exit: Returns you to menu
+        UserInfo: Tells you current user's information
+        Root: Allows root terminal access
+        python3: Allows you to run .py files
+        clear: Clears screen
+
+        More commands to come with future updates:
+        """)
+
+    while True:
+        bruhVariable = input(f"{bcolors.OKBLUE}Bear OS >>{bcolors.OKGREEN} ")
+
+        if bruhVariable == "Help":
+            os.system('clear')
+            helpCom()
+        elif bruhVariable == "help":
+            os.system('clear')
+            helpCom()
+
+        elif bruhVariable == "Exit":
+            os.system('clear')
+            H.homePage()
+            break
+        elif bruhVariable == "exit":
+            os.system('clear')
+            H.homePage()
+            break
+
+        elif bruhVariable == "UserInfo":
+            os.system('clear')
+            b_login = input(str("Please Enter The Password To " + l_n + " To view this data: "))
+            if b_login == l_p:
+                print("Username: " + l_n)
+                print("Password: " + l_p)
+            else:
+                print("Wrong password")
+
+        elif bruhVariable == "userinfo":
+            os.system('clear')
+            b_login = input(str("Please Enter The Password To " + l_n + " To view this data: "))
+            if b_login == l_p:
+                print("Username: " + l_n)
+                print("Password: " + l_p)
+            else:
+                print("Wrong password")
+
+        elif bruhVariable == "root":
+            login = input("To access the root terminal, please enter your password: ")
+
+            if login == l_p:
+                dec = input(f"{bcolors.FAIL}Are you sure you want to enter the root terminal?{bcolors.HEADER} ")
+                if dec == 'y':
+                    rootTerm()
+                elif dec == 'Y':
+                    rootTerm()
+                elif dec == 'n':
+                    print("Returning to regular terminal...")
+                    time.sleep(0.5)
+                    terminalMain()
+                elif dec == 'N':
+                    print("Returning to regular terminal...")
+                    time.sleep(0.5)
+                    terminalMain()
+
+        elif bruhVariable == "Root":
+            login = input("To access the root terminal, please enter your password: ")
+
+            if login == l_p:
+                dec = input("Are you sure you want to enter the root terminal? ")
+                if dec == 'y':
+                    rootTerm()
+                elif dec == 'Y':
+                    rootTerm()
+                elif dec == 'n':
+                    print("Returning to regular terminal...")
+                    time.sleep(0.5)
+                    terminalMain()
+                    break
+                elif dec == 'N':
+                    print("Returning to regular terminal...")
+                    time.sleep(0.5)
+                    terminalMain()
+                    break
+
+            elif login != l_p:
+                print("Wrong password!")
+
+        elif bruhVariable == "clear":
+            os.system('clear')
+
+        elif bruhVariable == "Clear":
+            os.system('clear')
+
+        elif bruhVariable == "python3":
+            m = input("What file would you like to run? ")
+            if m.endswith('.py'):
+                os.system(f'python3 {m}')
+            else:
+                print(m + " is not a py file.")
+
+        else:
+            print("The command, " "" + bruhVariable + "" " wasn't found!")
+
+def gameDevSelect():
+	class bcolors:
+		HEADER = '\033[95m'
+		OKBLUE = '\033[94m'
+		OKCYAN = '\033[96m'
+		OKGREEN = '\033[92m'
+		WARNING = '\033[93m'
+		FAIL = '\033[91m'
+		ENDC = '\033[0m'
+		BOLD = '\033[1m'
+		UNDERLINE = '\033[4m'
+
+	def error(message):
+		os.system('clear')
+		print(f"{bcolors.FAIL}" + message)
+		gameSelect()
+
+	gameSelect()
+class bcolors:
+	HEADER = '\033[95m'
+	OKBLUE = '\033[94m'
+	OKCYAN = '\033[96m'
+	OKGREEN = '\033[92m'
+	WARNING = '\033[93m'
+	FAIL = '\033[91m'
+	ENDC = '\033[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
+
+def clearDumbScreen():
+	system("clear")
+
+def error():
+	system('clear')
+	print("This action doesn't exist, or hasn't been implemented yet.")
+	homePage()
+
+def homePage():
+	login_pass = open('data/password.pass')
+	login_name = open('data/username.pass')
+	l_p = login_pass.read()
+	l_n = login_name.read()
+	print(f"""{bcolors.OKBLUE}
+	Bear OS v1.2.4
+	Home page
+
+	""")
+	print(f"{bcolors.OKBLUE}Welcome " + l_n)
+	print(f"{bcolors.OKBLUE}The Date Is: " + time.strftime("%m/%d/%y"))
+	print(f"""{bcolors.OKBLUE}
+	[1] To Open Google
+	[2] To Open Text Editor
+	[3] To Open File Exploer
+	[4] To Configure and Open BioS
+	[5] To Open Terminal
+	[6] To Open Calculator
+	[7] Show Recent Updates
+	[8] To restart the system
+	[9] To Close OS Safely
+	[10] To play games
+	""")
+
+	select = input(f"[?]:{bcolors.OKGREEN} ")
+	print(f"{bcolors.OKBLUE}")
+
+	if select == '1':
+		print("Called")
+		error()
+
+	elif select == '2':
+		clearDumbScreen()
+		editorMain()
+
+	elif select == '3':
+		error()
+
+	elif select == '4':
+		system('clear')
+		while True:
+			b_login = input(str("Please Enter The Password To " + l_n + " To Open BioS: "))
+			if b_login == l_p:
+				print("Opening BioS")
+				print("Press enter the command 'e' to exit")
+				host_name = socket.gethostname()
+				host_ip = socket.gethostbyname(host_name)
+				print("[1] USER NAME: " + l_n)
+				print("[2] PASSWORD: " + l_p)
+				print("Hostname:", host_name)
+				print("LOCAL IPS: " + host_ip)
+				edit_b = input("Enter [?] to change setting: ")
+				if edit_b == '1':
+					edit_n = input("Enter New Username: ")
+					with open('data/username.pass', 'w') as f:
+						f.writelines(edit_n)
+					print("Username Changed To " + edit_n)
+					input("Press Enter To Restart: ")
+					homePage()
+					os.system('exit')
+
+				if edit_b == '2':
+					edit_p = input("Enter New Password: ")
+					with open('data/password.pass', 'w') as f:
+						f.writelines(edit_p)
+
+					print("Password Changed To " + edit_p)
+					input("Press Enter To Restart: ")
+					homePage()
+					os.system('exit')
+
+				if edit_b == 'E':
+					os.system('clear')
+					print("Leaving BIOS...")
+					time.sleep(0.5)
+					homePage()
+					break
+
+				if edit_b == 'e':
+					os.system('clear')
+					print("Leaving BIOS...")
+					time.sleep(0.5)
+					homePage()
+					break
+
+				else:
+					print("You can't change that!")
+
+			else:
+				print("Wrong Password To " + l_n)
+
+	elif select == '5':
+		clearDumbScreen()
+		terminalMain()
+
+	elif select == '6':
+		error()
+
+	elif select == '7':
+		clearDumbScreen()
+		print(f"""
+{bcolors.OKBLUE}Update 1.2.4:
+	{bcolors.OKBLUE}[{bcolors.OKCYAN}!{bcolors.OKBLUE}] Terminal Based text editor soon!
+	{bcolors.OKGREEN}[+] You can now run .py files from the terminal
+{bcolors.OKBLUE}Update 1.2.3:
+	{bcolors.OKGREEN}[+] Bug Fixes
+	[+] Ability to Restart
+	{bcolors.FAIL}[-] The browser feature wont be able to work for a while
+{bcolors.OKBLUE}Update 1.2.2:
+	{bcolors.OKBLUE}[{bcolors.OKCYAN}!{bcolors.OKBLUE}] Big Change with Menu Coming Soon!
+	{bcolors.OKGREEN}[+] Cosmetics
+	[+] Colors
+		{bcolors.FAIL}[-] Not Enough Colors
+	{bcolors.OKGREEN}[+] Minor Bug Fixes
+{bcolors.OKBLUE}Update 1.2.1:
+	{bcolors.OKGREEN}[+] Added Developer mode
+	[+] Bug Fixes
+	[+] Better Error Handling
+{bcolors.OKBLUE}Update 0.2.1:
+	{bcolors.OKGREEN}[+] Bug Fixes
+{bcolors.OKBLUE}Update 0.0.1:
+	{bcolors.OKGREEN}[+] Basic Files Added
+		{bcolors.FAIL}[-] Lots Of Bugs
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Cmd-Line-OS
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.OKBLUE}Legend:
+{bcolors.OKGREEN}[+] is an Addition
+{bcolors.FAIL}[-] is an issue created by the addition
+{bcolors.OKBLUE}[{bcolors.OKCYAN}!{bcolors.OKBLUE}] Upcoming change/update
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.FAIL}Press 'e' to exit
+		""")
+		while True:
+			thing = input("Command: ")
+			if thing == 'e':
+				os.system('clear')
+				homePage()
+				break
+
+			elif thing == 'E':
+				os.system('clear')
+				homePage()
+				break
+			
+			else:
+				print("That isn't an 'e'.")
+
+	elif select == '8':
+		print("Restarting...")
+		time.sleep(1)
+		exec(open('BearCMDos.py').read())
+
+	elif select == '9':
+		print("Shutting down...")
+		print("Have a nice day!")
+		time.sleep(1)
+		os.system('exit')
+		sys.exit()
+	
+	elif select == '10':
+		clearDumbScreen()
+		gameSelect()
+	
+	else:
+		error()
+
+def devPage():
+	login_pass = open('data/password.pass')
+	login_name = open('data/username.pass')
+	l_p = login_pass.read()
+	l_n = login_name.read()
+	print(f"""{bcolors.OKBLUE}
+	Bear OS v1.2.4
+	Home page
+	(DEVELOPER MODE: ACTIVATED)
+
+	""")
+	print(f"{bcolors.OKBLUE}Welcome, Admin")
+	print(f"{bcolors.OKBLUE}The Date Is: " + time.strftime("%m/%d/%y"))
+	print(f"""{bcolors.OKBLUE}
+	[1] To Open Google
+	[2] To Open Text Editor
+	[3] To Open File Exploer
+	[4] To Configure and Open BioS
+	[5] To Open Terminal
+	[6] To Open Calculator
+	[7] To Show Recent Updates
+	[8] To restart the system
+	[9] To Close OS Safely
+	[10] To games
+	""")
+
+	select = input(f"[?]:{bcolors.OKGREEN} ")
+	print(f"{bcolors.OKBLUE}")
+	if select == '1':
+		error()
+
+	elif select == '2':
+		clearDumbScreen()
+		E.editorMain()
+
+	elif select == '3':
+		error()
+
+	elif select == '4':
+		system('clear')
+		while True:
+			print("Opening BioS")
+			print("Press enter the command 'e' to exit")
+			host_name = socket.gethostname()
+			host_ip = socket.gethostbyname(host_name)
+			print("[1] USER NAME: " + l_n)
+			print("[2] PASSWORD: " + l_p)
+			print("Hostname:", host_name)
+			print("LOCAL IPS: " + host_ip)
+			edit_b = input("Enter [?] to change setting: ")
+			if edit_b == '1':
+				edit_n = input("Enter New Username: ")
+				with open('data/username.pass', 'w') as f:
+					f.writelines(edit_n)
+				print("Username Changed To " + edit_n)
+				input("Press Enter To Restart: ")
+				homePage()
+				os.system('exit')
+
+			if edit_b == '2':
+				edit_p = input("Enter New Password: ")
+				with open('data/password.pass', 'w') as f:
+					f.writelines(edit_p)
+				print("Password Changed To " + edit_p)
+				input("Press Enter To Restart: ")
+				homePage()
+				os.system('exit')
+
+			if edit_b == 'E':
+				os.system('clear')
+				print("Leaving BIOS...")
+				time.sleep(0.5)
+				homePage()
+				break
+
+			if edit_b == 'e':
+				os.system('clear')
+				print("Leaving BIOS...")
+				time.sleep(0.5)
+				homePage()
+				break
+
+			else:
+				print("You can't change that!")
+
+	elif select == '5':
+		clearDumbScreen()
+		devTermMain()
+
+	elif select == '6':
+		error()
+
+	elif select == '7':
+		clearDumbScreen()
+		print(f"""
+{bcolors.OKBLUE}Update 1.2.4:
+	{bcolors.OKBLUE}[{bcolors.OKCYAN}!{bcolors.OKBLUE}] Terminal Based text editor soon!
+	{bcolors.OKGREEN}[+] You can now run .py files from the terminal
+{bcolors.OKBLUE}Update 1.2.3:
+	{bcolors.OKGREEN}[+] Bug Fixes
+	[+] Ability to Restart
+	{bcolors.FAIL}[-] The browser feature wont be able to work for a while
+{bcolors.OKBLUE}Update 1.2.2:
+	{bcolors.OKBLUE}[{bcolors.OKCYAN}!{bcolors.OKBLUE}] Big Change with Menu Coming Soon!
+	{bcolors.OKGREEN}[+] Cosmetics
+	[+] Colors
+		{bcolors.FAIL}[-] Not Enough Colors
+	{bcolors.OKGREEN}[+] Minor Bug Fixes
+{bcolors.OKBLUE}Update 1.2.1:
+	{bcolors.OKGREEN}[+] Added Developer mode
+	[+] Bug Fixes
+	[+] Better Error Handling
+{bcolors.OKBLUE}Update 0.2.1:
+	{bcolors.OKGREEN}[+] Bug Fixes
+{bcolors.OKBLUE}Update 0.0.1:
+	{bcolors.OKGREEN}[+] Basic Files Added
+		{bcolors.FAIL}[-] Lots Of Bugs
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Cmd-Line-OS
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.OKBLUE}Legend:
+{bcolors.OKGREEN}[+] is an Addition
+{bcolors.FAIL}[-] is an issue created by the addition
+{bcolors.OKBLUE}[{bcolors.OKCYAN}!{bcolors.OKBLUE}] Upcoming change/update
+{bcolors.OKBLUE}--------------------------------------------
+{bcolors.FAIL}Press 'e' to exit
+		""")
+		while True:
+			thing = input("Command: ")
+			if thing == 'e':
+				os.system('clear')
+				devPage()
+				break
+
+			elif thing == 'E':
+				os.system('clear')
+				devPage()
+				break
+			
+			else:
+				print("That isn't an 'e'.")
+
+	elif select == '8':
+		print("Restarting...")
+		time.sleep(1)
+		exec(open('BearCMDos.py').read())
+
+	elif select == '9':
+		print("Shutting down...")
+		print("Have a nice day!")
+		time.sleep(1)
+		os.system('exit')
+		sys.exit()
+	
+	elif select == '10':
+		clearDumbScreen()
+		gameDevSelect()
+	
+	else:
+		error()
+
+def snakeGame():
+	import random
+	import curses
+	from curses import textpad
+	import home as H
+
+	OPPOSITE_DIRECTION_DICT = {
+		curses.KEY_UP: curses.KEY_DOWN,
+		curses.KEY_DOWN: curses.KEY_UP,
+		curses.KEY_RIGHT: curses.KEY_LEFT,
+		curses.KEY_LEFT: curses.KEY_RIGHT
+	}
+
+	DIRECTIONS_LIST = [curses.KEY_RIGHT, curses.KEY_LEFT, curses.KEY_DOWN, curses.KEY_UP]
+	def create_food(snake, box):
+		"""Simple function to find coordinates of food which is inside box and not on snake body"""
+		food = None
+		while food is None:
+			food = [random.randint(box[0][0]+1, box[1][0]-1), 
+			random.randint(box[0][1]+1, box[1][1]-1)]
+			if food in snake:
+				food = None
+		return food
+	def main(stdscr):
+		# initial settings
+		curses.curs_set(0)
+		stdscr.nodelay(1)
+		stdscr.timeout(100)
+		# create a game box
+		sh, sw = stdscr.getmaxyx()
+		box = [[3,3], [sh-3, sw-3]]  # [[ul_y, ul_x], [dr_y, dr_x]]
+		textpad.rectangle(stdscr, box[0][0], box[0][1], box[1][0], box[1][1])
+		
+		# create snake and set initial direction
+		snake = [[sh//2, sw//2+1], [sh//2, sw//2], [sh//2, sw//2-1]]
+		direction = curses.KEY_RIGHT
+		# draw snake
+		for y,x in snake:
+			stdscr.addstr(y, x, '#')
+		# create food
+		food = create_food(snake, box)
+		stdscr.addstr(food[0], food[1], '*')
+		# print score
+		score = 0
+		score_text = "Score: {}".format(score)
+		stdscr.addstr(1, sw//2 - len(score_text)//2, score_text)
+		while 1:
+			# non-blocking input
+			key = stdscr.getch()
+				
+			# set direction if user pressed any arrow key and that key is not opposite of current direction
+			if key in DIRECTIONS_LIST and key != OPPOSITE_DIRECTION_DICT[direction]:
+				direction = key
+			# find next position of snake head
+			head = snake[0]
+			if direction == curses.KEY_RIGHT:
+				new_head = [head[0], head[1]+1]
+			elif direction == curses.KEY_LEFT:
+				new_head = [head[0], head[1]-1]
+			elif direction == curses.KEY_DOWN:
+				new_head = [head[0]+1, head[1]]
+			elif direction == curses.KEY_UP:
+				new_head = [head[0]-1, head[1]]
+			if curses.KEY_ENTER:
+				homePage()
+			# insert and print new head
+			stdscr.addstr(new_head[0], new_head[1], '#')
+			snake.insert(0, new_head)
+			
+			# if sanke head is on food
+			if snake[0] == food:
+				# update score
+				score += 1
+				score_text = "Score: {}".format(score)
+				stdscr.addstr(1, sw//2 - len(score_text)//2, score_text)
+				
+				# create new food
+				food = create_food(snake, box)
+				stdscr.addstr(food[0], food[1], '*')
+				# increase speed of game
+				stdscr.timeout(100 - (len(snake)//3)%90)
+			else:
+				# shift snake's tail
+				stdscr.addstr(snake[-1][0], snake[-1][1], ' ')
+				snake.pop()
+			# conditions for game over
+			if (snake[0][0] in [box[0][0], box[1][0]] or 
+				snake[0][1] in [box[0][1], box[1][1]] or 
+				snake[0] in snake[1:]):
+				msg = "Game Over!"
+				stdscr.addstr(sh//2, sw//2-len(msg)//2, msg)
+				stdscr.nodelay(0)
+				stdscr.getch()
+				print("Final Score: " + str(score))
+				break
+
+	curses.wrapper(main)
+
+def snakeDevGame():
+	import random
+	import curses
+	from curses import textpad
+	import home as H
+	OPPOSITE_DIRECTION_DICT = {
+		curses.KEY_UP: curses.KEY_DOWN,
+		curses.KEY_DOWN: curses.KEY_UP,
+		curses.KEY_RIGHT: curses.KEY_LEFT,
+		curses.KEY_LEFT: curses.KEY_RIGHT
+	}
+	DIRECTIONS_LIST = [curses.KEY_RIGHT, curses.KEY_LEFT, curses.KEY_DOWN, curses.KEY_UP]
+	def create_food(snake, box):
+		"""Simple function to find coordinates of food which is inside box and not on snake body"""
+		food = None
+		while food is None:
+			food = [random.randint(box[0][0]+1, box[1][0]-1), 
+			random.randint(box[0][1]+1, box[1][1]-1)]
+			if food in snake:
+				food = None
+		return food
+	def main(stdscr):
+		# initial settings
+		curses.curs_set(0)
+		stdscr.nodelay(1)
+		stdscr.timeout(100)
+		# create a game box
+		sh, sw = stdscr.getmaxyx()
+		box = [[3,3], [sh-3, sw-3]]  # [[ul_y, ul_x], [dr_y, dr_x]]
+		textpad.rectangle(stdscr, box[0][0], box[0][1], box[1][0], box[1][1])
+		
+		# create snake and set initial direction
+		snake = [[sh//2, sw//2+1], [sh//2, sw//2], [sh//2, sw//2-1]]
+		direction = curses.KEY_RIGHT
+		# draw snake
+		for y,x in snake:
+			stdscr.addstr(y, x, '#')
+		# create food
+		food = create_food(snake, box)
+		stdscr.addstr(food[0], food[1], '*')
+		# print score
+		score = 0
+		score_text = "Score: {}".format(score)
+		stdscr.addstr(1, sw//2 - len(score_text)//2, score_text)
+		while 1:
+			# non-blocking input
+			key = stdscr.getch()
+				
+			# set direction if user pressed any arrow key and that key is not opposite of current direction
+			if key in DIRECTIONS_LIST and key != OPPOSITE_DIRECTION_DICT[direction]:
+				direction = key
+			# find next position of snake head
+			head = snake[0]
+			if direction == curses.KEY_RIGHT:
+				new_head = [head[0], head[1]+1]
+			elif direction == curses.KEY_LEFT:
+				new_head = [head[0], head[1]-1]
+			elif direction == curses.KEY_DOWN:
+				new_head = [head[0]+1, head[1]]
+			elif direction == curses.KEY_UP:
+				new_head = [head[0]-1, head[1]]
+			if curses.KEY_ENTER:
+				homePage()
+			# insert and print new head
+			stdscr.addstr(new_head[0], new_head[1], '#')
+			snake.insert(0, new_head)
+			
+			# if sanke head is on food
+			if snake[0] == food:
+				# update score
+				score += 1
+				score_text = "Score: {}".format(score)
+				stdscr.addstr(1, sw//2 - len(score_text)//2, score_text)
+				
+				# create new food
+				food = create_food(snake, box)
+				stdscr.addstr(food[0], food[1], '*')
+				# increase speed of game
+				stdscr.timeout(100 - (len(snake)//3)%90)
+			else:
+				# shift snake's tail
+				stdscr.addstr(snake[-1][0], snake[-1][1], ' ')
+				snake.pop()
+			# conditions for game over
+			if (snake[0][0] in [box[0][0], box[1][0]] or 
+				snake[0][1] in [box[0][1], box[1][1]] or 
+				snake[0] in snake[1:]):
+				msg = "Game Over!"
+				stdscr.addstr(sh//2, sw//2-len(msg)//2, msg)
+				stdscr.nodelay(0)
+				stdscr.getch()
+				print("Final Score: " + str(score))
+				break
+	curses.wrapper(main)
+
+login_pass = open('data/password.pass')
+login_name = open('data/username.pass')
+l_p = login_pass.read()
+l_n = login_name.read()
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def devTermMain():
+    os.system('clear')
+    print("Welcome to the Bear OS Terminal")
+    print("Ver 1.2.4")
+    print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
+    def helpCom():
+        os.system('clear')
+        print("""
+        Exit: Returns you to menu
+        UserInfo: Tells you current user's information
+        Root: Allows root terminal access
+        python3: Allows you to run .py files
+        clear: Clears screen
+
+        More commands to come with future updates:
+        """)
+
+    while True:
+        bruhVariable = input(f"{bcolors.OKBLUE}Bear OS >>{bcolors.OKGREEN} ")
+
+        pyfile = bruhVariable.endswith(".py")
+
+        m = str(pyfile)
+
+        if bruhVariable == "Help":
+            os.system('clear')
+            helpCom()
+        elif bruhVariable == "help":
+            os.system('clear')
+            helpCom()
+
+        elif bruhVariable == "Exit":
+            os.system('clear')
+            devPage()
+            break
+        elif bruhVariable == "exit":
+            os.system('clear')
+            devPage()
+            break
+
+        elif bruhVariable == "UserInfo":
+            os.system('clear')
+            print("Username: " + l_n)
+            print("Password: " + l_p)
+
+        elif bruhVariable == "userinfo":
+            os.system('clear')
+            print("Username: " + l_n)
+            print("Password: " + l_p)
+
+        elif bruhVariable == "clear":
+            os.system('clear')
+
+        elif bruhVariable == "Clear":
+            os.system('clear')
+        
+        elif bruhVariable == "python3":
+            m = input("What file would you like to run? ")
+            if m.endswith('.py'):
+                os.system(f'python3 {m}')
+            else:
+                print(m + " is not a py file.")
+
+        elif bruhVariable == "restart":
+            print("Restarting...")
+            time.sleep(1)
+            exec(open('BearCMDos.py').read())
+
+        else:
+            print("The command, " "" + bruhVariable + "" " wasn't found!")
+import os
+import home as H
+
+login_pass = open('data/password.pass')
+login_name = open('data/username.pass')
+l_p = login_pass.read()
+l_n = login_name.read()
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def rootTerm():
+    os.system('clear')
+    print(f"{bcolors.OKCYAN}Welcome to the Bear OS Terminal")
+    print("Ver 1.2.4")
+    print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
+    def helpCom():
+        os.system('clear')
+        print("""
+        Exit: Returns you to menu
+        UserInfo: Tells you current user's information
+        python3: Allows you to run .py files
+        clear: Clears screen
+
+        More commands to come with future updates:
+        """)
+
+    while True:
+        bruhVariable = input(f"(ROOT) Bear OS >> {bcolors.OKGREEN}")
+        print(f"{bcolors.OKCYAN}")
+        if bruhVariable == "Help":
+            os.system('clear')
+            helpCom()
+        elif bruhVariable == "help":
+            os.system('clear')
+            helpCom()
+
+        if bruhVariable == "Exit":
+            os.system('clear')
+            H.homePage()
+            break
+        elif bruhVariable == "exit":
+            os.system('clear')
+            H.homePage()
+            break
+
+        if bruhVariable == "UserInfo":
+            os.system('clear')
+            print("Username: " + l_n)
+            print("Password: " + l_p)
+
+        elif bruhVariable == "userinfo":
+            os.system('clear')
+            print("Username: " + l_n)
+            print("Password: " + l_p)
+
+        elif bruhVariable == "python3":
+            m = input("What file would you like to run? ")
+            if m.endswith('.py'):
+                os.system(f'python3 {m}')
+            else:
+                print(m + " is not a py file.")
+
+        else:
+            print("The command, " "" + bruhVariable + "" " wasn't found!")
+
+# Importing Required libraries & Modules
+from tkinter import *
+from tkinter import messagebox
+from tkinter import filedialog
+
+import home as H
+# Defining TextEditor Class 
+def editorMain():
+  class TextEditor:
+    # Defining Constructor
+    def __init__(self,root):
+      # Assigning root
+      self.root = root
+      # Title of the window
+      self.root.title("Bork")
+      # Window Geometry
+      self.root.geometry("1200x700+200+150")
+      # Initializing filename
+      self.filename = None
+      # Declaring Title variable
+      self.title = StringVar()
+      # Declaring Status variable
+      self.status = StringVar()
+      # Creating Titlebar
+      self.titlebar = Label(self.root,textvariable=self.title,font=("times new roman",15,"bold"),bd=2,relief=GROOVE)
+      # Packing Titlebar to root window
+      self.titlebar.pack(side=TOP,fill=BOTH)
+      # Calling Settitle Function
+      self.settitle()
+      # Creating Statusbar
+      self.statusbar = Label(self.root,textvariable=self.status,font=("times new roman",15,"bold"),bd=2,relief=GROOVE)
+      # Packing status bar to root window
+      self.statusbar.pack(side=BOTTOM,fill=BOTH)
+      # Initializing Status
+      self.status.set("Welcome To Bork")
+      # Creating Menubar
+      self.menubar = Menu(self.root,font=("times new roman",15,"bold"),activebackground="skyblue")
+      # Configuring menubar on root window
+      self.root.config(menu=self.menubar)
+      # Creating File Menu
+      self.filemenu = Menu(self.menubar,font=("times new roman",12,"bold"),activebackground="skyblue",tearoff=0)
+      # Adding New file Command
+      self.filemenu.add_command(label="New",accelerator="Ctrl+N",command=self.newfile)
+      # Adding Open file Command
+      self.filemenu.add_command(label="Open",accelerator="Ctrl+O",command=self.openfile)
+      # Adding Save File Command
+      self.filemenu.add_command(label="Save",accelerator="Ctrl+S",command=self.savefile)
+      # Adding Save As file Command
+      self.filemenu.add_command(label="Save As",accelerator="Ctrl+A",command=self.saveasfile)
+      # Adding Seprator
+      self.filemenu.add_separator()
+      # Adding Exit window Command
+      self.filemenu.add_command(label="Exit",accelerator="Ctrl+E",command=self.exit)
+      # Cascading filemenu to menubar
+      self.menubar.add_cascade(label="File", menu=self.filemenu)
+      # Creating Edit Menu
+      self.editmenu = Menu(self.menubar,font=("times new roman",12,"bold"),activebackground="skyblue",tearoff=0)
+      # Adding Cut text Command
+      self.editmenu.add_command(label="Cut",accelerator="Ctrl+X",command=self.cut)
+      # Adding Copy text Command
+      self.editmenu.add_command(label="Copy",accelerator="Ctrl+C",command=self.copy)
+      # Adding Paste text command
+      self.editmenu.add_command(label="Paste",accelerator="Ctrl+V",command=self.paste)
+      # Adding Seprator
+      self.editmenu.add_separator()
+      # Adding Undo text Command
+      self.editmenu.add_command(label="Undo",accelerator="Ctrl+U",command=self.undo)
+      # Cascading editmenu to menubar
+      self.menubar.add_cascade(label="Edit", menu=self.editmenu)
+      # Creating Help Menu
+      self.helpmenu = Menu(self.menubar,font=("times new roman",12,"bold"),activebackground="skyblue",tearoff=0)
+      # Adding About Command
+      self.helpmenu.add_command(label="About",command=self.infoabout)
+      # Cascading helpmenu to menubar
+      self.menubar.add_cascade(label="Help", menu=self.helpmenu)
+      # Creating Scrollbar
+      scrol_y = Scrollbar(self.root,orient=VERTICAL)
+      # Creating Text Area
+      self.txtarea = Text(self.root,yscrollcommand=scrol_y.set,font=("times new roman",15,"bold"),state="normal",relief=GROOVE)
+      # Packing scrollbar to root window
+      scrol_y.pack(side=RIGHT,fill=Y)
+      # Adding Scrollbar to text area
+      scrol_y.config(command=self.txtarea.yview)
+      # Packing Text Area to root window
+      self.txtarea.pack(fill=BOTH,expand=1)
+      # Calling shortcuts funtion
+      self.shortcuts()
+    # Defining settitle function
+    def settitle(self):
+      # Checking if Filename is not None
+      if self.filename:
+        # Updating Title as filename
+        self.title.set(self.filename)
+      else:
+        # Updating Title as Untitled
+        self.title.set("Untitled")
+    # Defining New file Function
+    def newfile(self,*args):
+      # Clearing the Text Area
+      self.txtarea.delete("1.0",END)
+      # Updating filename as None
+      self.filename = None
+      # Calling settitle funtion
+      self.settitle()
+      # updating status
+      self.status.set("New File Created")
+    # Defining Open File Funtion
+    def openfile(self,*args):
+      # Exception handling
+      try:
+        # Asking for file to open
+        self.filename = filedialog.askopenfilename(title = "Select file",filetypes = (("All Files","*.*"),("Text Files","*.txt"),("Python Files","*.py")))
+        # checking if filename not none
+        if self.filename:
+          # opening file in readmode
+          infile = open(self.filename,"r")
+          # Clearing text area
+          self.txtarea.delete("1.0",END)
+          # Inserting data Line by line into text area
+          for line in infile:
+            self.txtarea.insert(END,line)
+          # Closing the file  
+          infile.close()
+          # Calling Set title
+          self.settitle()
+          # Updating Status
+          self.status.set("Opened Successfully")
+      except Exception as e:
+        messagebox.showerror("Exception",e)
+    # Defining Save File Funtion
+    def savefile(self,*args):
+      # Exception handling
+      try:
+        # checking if filename not none
+        if self.filename:
+          # Reading the data from text area
+          data = self.txtarea.get("1.0",END)
+          # opening File in write mode
+          outfile = open(self.filename,"w")
+          # Writing Data into file
+          outfile.write(data)
+          # Closing File
+          outfile.close()
+          # Calling Set title
+          self.settitle()
+          # Updating Status
+          self.status.set("Saved Successfully")
+        else:
+          self.saveasfile()
+      except Exception as e:
+        messagebox.showerror("Exception",e)
+    # Defining Save As File Funtion
+    def saveasfile(self,*args):
+      # Exception handling
+      try:
+        # Asking for file name and type to save
+        untitledfile = filedialog.asksaveasfilename(title = "Save file As",defaultextension=".txt",initialfile = "Untitled.txt",filetypes = (("All Files","*.*"),("Text Files","*.txt"),("Python Files","*.py")))
+        # Reading the data from text area
+        data = self.txtarea.get("1.0",END)
+        # opening File in write mode
+        outfile = open(untitledfile,"w")
+        # Writing Data into file
+        outfile.write(data)
+        # Closing File
+        outfile.close()
+        # Updating filename as Untitled
+        self.filename = untitledfile
+        # Calling Set title
+        self.settitle()
+        # Updating Status
+        self.status.set("Saved Successfully")
+      except Exception as e:
+        messagebox.showerror("Exception",e)
+    # Defining Exit Funtion
+    def exit(self,*args):
+      op = messagebox.askyesno("WARNING","Your Unsaved Data May be Lost!!")
+      if op>0:
+        self.root.destroy()
+        H.homePage()
+      else:
+        return
+    # Defining Cut Funtion
+    def cut(self,*args):
+      self.txtarea.event_generate("<<Cut>>")
+    # Defining Copy Funtion
+    def copy(self,*args):
+            self.txtarea.event_generate("<<Copy>>")
+    # Defining Paste Funtion
+    def paste(self,*args):
+      self.txtarea.event_generate("<<Paste>>")
+    # Defining Undo Funtion
+    def undo(self,*args):
+      # Exception handling
+      try:
+        # checking if filename not none
+        if self.filename:
+          # Clearing Text Area
+          self.txtarea.delete("1.0",END)
+          # opening File in read mode
+          infile = open(self.filename,"r")
+          # Inserting data Line by line into text area
+          for line in infile:
+            self.txtarea.insert(END,line)
+          # Closing File
+          infile.close()
+          # Calling Set title
+          self.settitle()
+          # Updating Status
+          self.status.set("Undone Successfully")
+        else:
+          # Clearing Text Area
+          self.txtarea.delete("1.0",END)
+          # Updating filename as None
+          self.filename = None
+          # Calling Set title
+          self.settitle()
+          # Updating Status
+          self.status.set("Undone Successfully")
+      except Exception as e:
+        messagebox.showerror("Exception",e)
+    # Defining About Funtion
+    def infoabout(self):
+      messagebox.showinfo("About Text Editor","Bork is a simple text editor included inside of Bear-OS")
+    # Defining shortcuts Funtion
+    def shortcuts(self):
+      # Binding Ctrl+n to newfile funtion
+      self.txtarea.bind("<Control-n>",self.newfile)
+      # Binding Ctrl+o to openfile funtion
+      self.txtarea.bind("<Control-o>",self.openfile)
+      # Binding Ctrl+s to savefile funtion
+      self.txtarea.bind("<Control-s>",self.savefile)
+      # Binding Ctrl+a to saveasfile funtion
+      self.txtarea.bind("<Control-a>",self.saveasfile)
+      # Binding Ctrl+e to exit funtion
+      self.txtarea.bind("<Control-e>",self.exit)
+      # Binding Ctrl+x to cut funtion
+      self.txtarea.bind("<Control-x>",self.cut)
+      # Binding Ctrl+c to copy funtion
+      self.txtarea.bind("<Control-c>",self.copy)
+      # Binding Ctrl+v to paste funtion
+      self.txtarea.bind("<Control-v>",self.paste)
+      # Binding Ctrl+u to undo funtion
+      self.txtarea.bind("<Control-u>",self.undo)
+  # Creating TK Container
+  root = Tk()
+  # Passing Root to TextEditor Class
+  TextEditor(root)
+  # Root Window Looping
+  root.mainloop()
+
+clearDumbScreen()
