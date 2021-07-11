@@ -1,0 +1,30 @@
+Ver 1.2.6
+ - Added Command Prompt (Windows) compatibility
+
+Ver 1.2.5
+ - More Error Codes
+ - Better Error Handler
+ - Bug Fixes
+
+Ver 1.2.4
+ - You can now run .py files from the terminal
+
+Ver 1.2.3
+ - Bug Fixes
+ - Ability to Restart
+
+Ver 1.2.2
+ - Cosmetics
+ - Colors
+ - Bug Fixes
+
+Ver 1.2.1
+ - Developer mode
+ - Bug fixes
+ - Better Error Handling
+
+Ver 0.2.1:
+ - Bug Fixes
+
+Ver 0.0.1:
+ - Basic Files Were Created
