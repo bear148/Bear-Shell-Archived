@@ -2,12 +2,11 @@ start:
 	python3 BearCMDos.py
 
 uninstall:
-	rm /data
-	rm BearCMDos.py
-	rm developerGuide.txt
-	rm foo.py
-	rm home.py
-	rm prev.txt
-	rm README.md
-	rm ToDo.md
-	rm Makefile
+	rm -r BearCMDos.py
+	rm -r developerGuide.txt
+	rm -r foo.py
+	rm -r home.py
+	rm -r prev.txt
+	rm -r README.md
+	rm -r ToDo.md
+	rm -r Makefile
