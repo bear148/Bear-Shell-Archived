@@ -43,7 +43,7 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear OS v1.2.7
+	Bear OS v1.2.8
 	Bear OS Registration
 	""")
 
@@ -74,7 +74,7 @@ def loginPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print("""
-	Bear OS v1.2.7
+	Bear OS v1.2.8
 	Bear OS Login Screen
 	""")
 
@@ -192,8 +192,9 @@ class bcolors:
 
 def terminalMain():
 	clearScreen()
+	cwd = os.getcwd()
 	print("Welcome to the Bear OS Terminal")
-	print("Ver 1.2.7")
+	print("Ver 1.2.8")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -205,12 +206,13 @@ def terminalMain():
 		ls: shows contents of given directory
 		pwd: shows current directory
 		restart: restarts the OS
+		cd: allows you to access a directory
 
 		More commands to come with future updates:
 		""")
 
 	while True:
-		bruhVariable = input(f"{bcolors.OKBLUE}Bear OS >>{bcolors.OKGREEN} ")
+		bruhVariable = input(f"{bcolors.OKGREEN}Bear OS: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
 
 		if bruhVariable == "Help":
 			clearScreen()
@@ -303,6 +305,7 @@ def terminalMain():
 		elif bruhVariable == "ls":
 			foo = input("What directory would you like to look through? ")
 			isdir = os.path.isdir(foo)
+
 			if isdir:
 				if name == 'nt':
 					print(f"{bcolors.WARNING}")
@@ -310,16 +313,25 @@ def terminalMain():
 				else:
 					print(f"{bcolors.WARNING}")
 					_ = system('ls ' + foo)
+
+			elif foo == 'ls':
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + cwd)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + cwd)
+
 			else:
 				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
 
 		elif bruhVariable == "pwd":
 			if name == 'nt':
 				print(f"{bcolors.WARNING}")
-				_ = system('cd')
+				_ = system('dir ' + cwd)
 			else:
 				print(f"{bcolors.WARNING}")
-				_ = system('pwd')
+				_ = system('ls ' + cwd)
 
 		elif bruhVariable == "restart":
 			print("Restarting...")
@@ -334,10 +346,51 @@ def terminalMain():
 		elif bruhVariable == "Pwd":
 			if name == 'nt':
 				print(f"{bcolors.WARNING}")
-				_ = system('cd')
+				_ = system('dir ' + cwd)
 			else:
 				print(f"{bcolors.WARNING}")
-				_ = system('pwd')
+				_ = system('ls ' + cwd)
+
+		elif bruhVariable == "cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+		elif bruhVariable == "Cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+			else:
+				errorHandle("Directory doesn't exist!", ErrorCodes.Err6)
 
 
 		else:
@@ -381,12 +434,13 @@ def error():
 	homePage()
 
 def homePage():
+	incol = bcolors.OKGREEN
 	login_pass = open('data/password.pass')
 	login_name = open('data/username.pass')
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear OS v1.2.7
+	Bear OS v1.2.8
 	Home page
 
 	""")
@@ -405,7 +459,7 @@ def homePage():
 	[10] To play games
 	""")
 
-	select = input(f"[?]:{bcolors.OKGREEN} ")
+	select = input(f"[?]:{incol} ")
 	print(f"{bcolors.OKBLUE}")
 
 	if select == '1':
@@ -482,6 +536,9 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.2.8:
+	{bcolors.OKGREEN}[+] Added the CD command
+	{bcolors.OKGREEN}[+] Small cosmetic changes
 {bcolors.OKBLUE}Update 1.2.7:
 	{bcolors.OKGREEN}[+] Added 'ls' command; allows to look into directories
 	{bcolors.OKGREEN}[+] Added 'pwd' command; allows to look at current directory
@@ -555,9 +612,10 @@ def homePage():
 	elif select == '10':
 		clearDumbScreen()
 		gameSelect()
-	
+
 	else:
 		error()
+
 
 def devPage():
 	login_pass = open('data/password.pass')
@@ -565,7 +623,7 @@ def devPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear OS v1.2.7
+	Bear OS v1.2.8
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -654,6 +712,9 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.2.8:
+	{bcolors.OKGREEN}[+] Added the CD command
+	{bcolors.OKGREEN}[+] Small cosmetic changes
 {bcolors.OKBLUE}Update 1.2.7:
 	{bcolors.OKGREEN}[+] Added 'ls' command; allows to look into directories
 	{bcolors.OKGREEN}[+] Added 'pwd' command; allows to look at current directory
@@ -852,8 +913,9 @@ class bcolors:
 
 def devTermMain():
 	clearScreen()
+	cwd = os.getcwd()
 	print("Welcome to the Bear OS Terminal")
-	print("Ver 1.2.7")
+	print("Ver 1.2.8")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -865,12 +927,13 @@ def devTermMain():
 		ls: shows contents of given directory
 		pwd: shows current directory
 		restart: restarts OS
+		cd: allows you to access a directory
 
 		More commands to come with future updates:
 		""")
 
 	while True:
-		bruhVariable = input(f"{bcolors.OKBLUE}Bear OS >>{bcolors.OKGREEN} ")
+		bruhVariable = input(f"{bcolors.OKGREEN}Bear OS: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
 
 		pyfile = bruhVariable.endswith(".py")
 
@@ -923,6 +986,7 @@ def devTermMain():
 		elif bruhVariable == "ls":
 			foo = input("What directory would you like to look through? ")
 			isdir = os.path.isdir(foo)
+
 			if isdir:
 				if name == 'nt':
 					print(f"{bcolors.WARNING}")
@@ -930,21 +994,25 @@ def devTermMain():
 				else:
 					print(f"{bcolors.WARNING}")
 					_ = system('ls ' + foo)
+
+			elif foo == 'ls':
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + cwd)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + cwd)
+
 			else:
 				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
 
 		elif bruhVariable == "pwd":
 			if name == 'nt':
 				print(f"{bcolors.WARNING}")
-				_ = system('cd')
+				_ = system('dir ' + cwd)
 			else:
 				print(f"{bcolors.WARNING}")
-				_ = system('pwd')
-
-		elif bruhVariable == "restart":
-			print("Restarting...")
-			time.sleep(1)
-			exec(open('BearCMDos.py').read())
+				_ = system('ls ' + cwd)
 
 		elif bruhVariable == "Restart":
 			print("Restarting...")
@@ -954,10 +1022,53 @@ def devTermMain():
 		elif bruhVariable == "Pwd":
 			if name == 'nt':
 				print(f"{bcolors.WARNING}")
-				_ = system('cd')
+				_ = system('dir ' + cwd)
 			else:
 				print(f"{bcolors.WARNING}")
-				_ = system('pwd')
+				_ = system('ls ' + cwd)
+
+		elif bruhVariable == "cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+			else:
+				print("Dir doesn't exist")
+
+		elif bruhVariable == "Cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+			else:
+				print("Dir doesn't exist")
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
@@ -982,8 +1093,9 @@ class bcolors:
 
 def rootTerm():
 	clearScreen()
+	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear OS Terminal")
-	print("Ver 1.2.7")
+	print("Ver 1.2.8")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
@@ -995,12 +1107,13 @@ def rootTerm():
 		ls: shows contents of given directory
 		pwd: shows current directory
 		restart: restarts OS
+		cd: allows you to access a directory
 
 		More commands to come with future updates:
 		""")
 
 	while True:
-		bruhVariable = input(f"{bcolors.OKCYAN}(ROOT) Bear OS >> {bcolors.OKGREEN}")
+		bruhVariable = input(f"{bcolors.OKGREEN}(ROOT) Bear OS: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
 		print(f"{bcolors.OKCYAN}")
 		if bruhVariable == "Help":
 			clearScreen()
@@ -1052,10 +1165,10 @@ def rootTerm():
 		elif bruhVariable == "pwd":
 			if name == 'nt':
 				print(f"{bcolors.WARNING}")
-				_ = system('cd')
+				_ = system('dir ' + cwd)
 			else:
 				print(f"{bcolors.WARNING}")
-				_ = system('pwd')
+				_ = system('ls ' + cwd)
 
 		elif bruhVariable == "restart":
 			print("Restarting...")
@@ -1070,10 +1183,61 @@ def rootTerm():
 		elif bruhVariable == "Pwd":
 			if name == 'nt':
 				print(f"{bcolors.WARNING}")
-				_ = system('cd')
+				_ = system('dir ' + cwd)
 			else:
 				print(f"{bcolors.WARNING}")
-				_ = system('pwd')
+				_ = system('ls ' + cwd)
+				
+		elif bruhVariable == "Ls":
+			foo = input("What directory would you like to look through? ")
+			isdir = os.path.isdir(foo)
+			if isdir:
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + foo)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + foo)
+			else:
+				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
+
+		elif bruhVariable == "cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+		elif bruhVariable == "Cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")

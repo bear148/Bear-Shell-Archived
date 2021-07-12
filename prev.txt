@@ -1,3 +1,8 @@
+Ver 1.2.7
+ - ls Command
+ - pwd Command
+ - restart Command
+
 Ver 1.2.6
  - Added Command Prompt (Windows) compatibility
 

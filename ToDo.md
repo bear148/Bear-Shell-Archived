@@ -1,4 +1,4 @@
 # CD Command
-# Sudo (Running Files as Root)
+# Sudo (Running Files as Root) -- Not needed
 # Cosmetic Stuff
 # Make new CMD-OS/BearOS flavors
