@@ -4,6 +4,10 @@ Bear-Shell is a command-line based shell developed by [Michael](https://github.c
 ## Why should I use Bear-Shell?
 I do not expect Bear-Shell to be used for real life applications, as it requires python 3 to be ran. In the future, I will more than likely be adding things like running commands as root, cd'ing into directories, and lots more. As of right now, it basically has the bare minimum to be used as, technically an os. With the new addition of the ls, and pwd command, you can now navigate even inside of the terminal.
 
+## Running and installing
+To run/install the shell, run the command: ```make start```
+To uninstall the shell, run the command: ```make uninstall```
+
 ## Compatibility
 As of now, Bear-Shell is compatible with Windows and Linux. No plans have been made to make Macintosh compatibility.
 
