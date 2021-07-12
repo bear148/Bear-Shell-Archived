@@ -43,8 +43,8 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear OS v1.2.8
-	Bear OS Registration
+	Bear Shell v1.2.8
+	Bear Shell Registration
 	""")
 
 	usrname = input("Please enter your new username: ")
@@ -74,8 +74,8 @@ def loginPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print("""
-	Bear OS v1.2.8
-	Bear OS Login Screen
+	Bear Shell v1.2.8
+	Bear Shell Login Screen
 	""")
 
 	while True:
@@ -193,7 +193,7 @@ class bcolors:
 def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
-	print("Welcome to the Bear OS Terminal")
+	print("Welcome to the Bear-Shell Terminal")
 	print("Ver 1.2.8")
 	def helpCom():
 		clearScreen()
@@ -212,7 +212,7 @@ def terminalMain():
 		""")
 
 	while True:
-		bruhVariable = input(f"{bcolors.OKGREEN}Bear OS: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
+		bruhVariable = input(f"{bcolors.OKGREEN}Bear-Shell: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
 
 		if bruhVariable == "Help":
 			clearScreen()
@@ -440,7 +440,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear OS v1.2.8
+	Bear Shell v1.2.8
 	Home page
 
 	""")
@@ -623,7 +623,7 @@ def devPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear OS v1.2.8
+	Bear Shell v1.2.8
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -914,7 +914,7 @@ class bcolors:
 def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
-	print("Welcome to the Bear OS Terminal")
+	print("Welcome to the Bear-Shell Terminal")
 	print("Ver 1.2.8")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
@@ -933,7 +933,7 @@ def devTermMain():
 		""")
 
 	while True:
-		bruhVariable = input(f"{bcolors.OKGREEN}Bear OS: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
+		bruhVariable = input(f"{bcolors.OKGREEN}Bear-Shell: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
 
 		pyfile = bruhVariable.endswith(".py")
 
@@ -1094,7 +1094,7 @@ class bcolors:
 def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
-	print(f"{bcolors.OKCYAN}Welcome to the Bear OS Terminal")
+	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
 	print("Ver 1.2.8")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
@@ -1113,7 +1113,7 @@ def rootTerm():
 		""")
 
 	while True:
-		bruhVariable = input(f"{bcolors.OKGREEN}(ROOT) Bear OS: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
+		bruhVariable = input(f"{bcolors.OKGREEN}(ROOT) Bear-Shell: " + f"{bcolors.OKBLUE}"+ cwd + " >>"f"{bcolors.OKGREEN} ")
 		print(f"{bcolors.OKCYAN}")
 		if bruhVariable == "Help":
 			clearScreen()
@@ -1464,7 +1464,7 @@ def editorMain():
 				messagebox.showerror("Exception",e)
 		# Defining About Funtion
 		def infoabout(self):
-			messagebox.showinfo("About Text Editor","Bork is a simple text editor included inside of Bear-OS")
+			messagebox.showinfo("About Text Editor","Bork is a simple text editor included inside of Bear-Shell")
 		# Defining shortcuts Funtion
 		def shortcuts(self):
 			# Binding Ctrl+n to newfile funtion
@@ -1707,7 +1707,7 @@ def devEditorMain():
 				messagebox.showerror("Exception",e)
 		# Defining About Funtion
 		def infoabout(self):
-			messagebox.showinfo("About Text Editor","Bork is a simple text editor included inside of Bear-OS")
+			messagebox.showinfo("About Text Editor","Bork is a simple text editor included inside of Bear-Shell")
 		# Defining shortcuts Funtion
 		def shortcuts(self):
 			# Binding Ctrl+n to newfile funtion
