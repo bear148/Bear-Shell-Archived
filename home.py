@@ -207,6 +207,7 @@ def terminalMain():
 		pwd: shows current directory
 		restart: restarts the OS
 		cd: allows you to access a directory
+		(Linux Only!) neofetch: shows system info
 
 		More commands to come with future updates:
 		""")
@@ -392,6 +393,12 @@ def terminalMain():
 			else:
 				errorHandle("Directory doesn't exist!", ErrorCodes.Err6)
 
+		elif bruhVariable == "neofetch":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				_ = system('neofetch')
+
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
@@ -538,6 +545,7 @@ def homePage():
 		print(f"""
 {bcolors.OKBLUE}Update 1.2.8:
 	{bcolors.OKGREEN}[+] Added the CD command
+	{bcolors.OKGREEN}[+] Added the neofetch command
 	{bcolors.OKGREEN}[+] Small cosmetic changes
 {bcolors.OKBLUE}Update 1.2.7:
 	{bcolors.OKGREEN}[+] Added 'ls' command; allows to look into directories
@@ -714,6 +722,7 @@ def devPage():
 		print(f"""
 {bcolors.OKBLUE}Update 1.2.8:
 	{bcolors.OKGREEN}[+] Added the CD command
+	{bcolors.OKGREEN}[+] Added the neofetch command
 	{bcolors.OKGREEN}[+] Small cosmetic changes
 {bcolors.OKBLUE}Update 1.2.7:
 	{bcolors.OKGREEN}[+] Added 'ls' command; allows to look into directories
@@ -928,6 +937,7 @@ def devTermMain():
 		pwd: shows current directory
 		restart: restarts OS
 		cd: allows you to access a directory
+		(Linux Only!) neofetch: sends system info
 
 		More commands to come with future updates:
 		""")
@@ -1070,6 +1080,12 @@ def devTermMain():
 			else:
 				print("Dir doesn't exist")
 
+		elif bruhVariable == "neofetch":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				_ = system('neofetch')
+
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 import os
@@ -1108,6 +1124,7 @@ def rootTerm():
 		pwd: shows current directory
 		restart: restarts OS
 		cd: allows you to access a directory
+		(Linux Only!) neofetch: sends system info
 
 		More commands to come with future updates:
 		""")
@@ -1238,6 +1255,12 @@ def rootTerm():
 						cwd = fi
 					else:
 						print("You don't have permission to access that folder! ")
+
+		elif bruhVariable == "neofetch":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				_ = system('neofetch')
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")

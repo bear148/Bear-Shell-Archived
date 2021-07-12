@@ -31,6 +31,7 @@ By flavors I mean making new flavors of Bear-Shell, like Ubuntu is a flavor of D
 In the most recent update, version 1.2.8, I added the cd command.
 
 - cd: Allows a user to access a directory from the terminal, for example, if a user was in their documents directory, they could cd into the desktop directory and access files inside of the desktop directory from the terminal.
+- neofetch: tells the user their system info (This command ONLY works for linux!)
 - I added the current directory to the command prompt so you always know where you are.
 - CD, LS, PWD, PYTHON3, commands will all work with windows. (Basically you are able to run the same commands on linux as you can in windows and they'd run the same)
 
