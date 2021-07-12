@@ -64,6 +64,7 @@ The current commands that can be used in the included terminal are as listed:
 - exit
 - userinfo
 - cd
+- neofetch
 
 ## Additional Resources Used:
 (Text Editor, and Soon, Web Browser)
