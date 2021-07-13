@@ -32,16 +32,14 @@ By cosmetics I mean when typing a number in the menu for example, if the number 
 By flavors I mean making new flavors of Bear-Shell, like Ubuntu is a flavor of Debian, and such.
 
 ## Newest Updates
-In the most recent update, version 1.2.8, I added the cd command.
+In the most recent update, version 1.2.9, I added the apt-get command.
 
-- cd: Allows a user to access a directory from the terminal, for example, if a user was in their documents directory, they could cd into the desktop directory and access files inside of the desktop directory from the terminal.
-- neofetch: tells the user their system info (This command ONLY works for linux!)
-- I added the current directory to the command prompt so you always know where you are.
-- CD, LS, PWD, PYTHON3, commands will all work with windows. (Basically you are able to run the same commands on linux as you can in windows and they'd run the same)
+- apt-get: Allows a user to run the basic apt commands, such as: install, remove, update, and upgrade
 
-I also found that sudo will not be needed. I was testing out cd'ing into directories like /usr/share and C:\Windows\System32 and everything worked fine. No permission errors, no nothing. Though, I believe if a user tries to save a file to a directory like one of those they will receive an error, because you need <u>write</u> permissions. I will work on this in the future though.
+This is a small but also very BIG update. Yes I know there are only 4 apt-get commands right now but they are pretty much all you need. Now the user can install packages using the apt-get command right from the Bear-Shell!
 
 ## Older Updates
+- Ver 1.2.8
 - Ver 1.2.7
 - Ver 1.2.6
 - Ver 1.2.5
@@ -65,10 +63,11 @@ The current commands that can be used in the included terminal are as listed:
 - userinfo
 - cd
 - neofetch
+- apt-get
 
 ## Additional Resources Used:
 (Text Editor, and Soon, Web Browser)
-BorkUtils: Created by [Michael](https://github.com/BizzyPythonBear)
+Bear-Utils: Created by [Michael](https://github.com/BizzyPythonBear)
 
 Everything else has been created by me, terminal, menu, etc.
 

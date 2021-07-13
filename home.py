@@ -43,7 +43,7 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear Shell v1.2.8
+	Bear Shell v1.2.9
 	Bear Shell Registration
 	""")
 
@@ -74,7 +74,7 @@ def loginPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print("""
-	Bear Shell v1.2.8
+	Bear Shell v1.2.9
 	Bear Shell Login Screen
 	""")
 
@@ -194,7 +194,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.2.8")
+	print("Ver 1.2.9")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -208,6 +208,8 @@ def terminalMain():
 		restart: restarts the OS
 		cd: allows you to access a directory
 		(Linux Only!) neofetch: shows system info
+		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
+
 
 		More commands to come with future updates:
 		""")
@@ -327,12 +329,7 @@ def terminalMain():
 				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
 
 		elif bruhVariable == "pwd":
-			if name == 'nt':
-				print(f"{bcolors.WARNING}")
-				_ = system('dir ' + cwd)
-			else:
-				print(f"{bcolors.WARNING}")
-				_ = system('ls ' + cwd)
+			print(cwd)
 
 		elif bruhVariable == "restart":
 			print("Restarting...")
@@ -345,12 +342,7 @@ def terminalMain():
 			exec(open('BearCMDos.py').read())
 
 		elif bruhVariable == "Pwd":
-			if name == 'nt':
-				print(f"{bcolors.WARNING}")
-				_ = system('dir ' + cwd)
-			else:
-				print(f"{bcolors.WARNING}")
-				_ = system('ls ' + cwd)
+			print(cwd)
 
 		elif bruhVariable == "cd":
 			fi = input("Where would you like to go? ")
@@ -398,6 +390,43 @@ def terminalMain():
 				print("This command isn't available on your OS!")
 			else:
 				_ = system('neofetch')
+
+		elif bruhVariable == "apt-get":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				while True:
+					food = input("Would you like to run apt-get update, install, remove, or upgrade? ")
+					if food == "update":
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get update')
+						break
+
+					elif food == "install":
+						ding = input("What package do you want to install? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get install ' + ding)
+						break
+					
+					elif food == "remove":
+						fing = input("What package would you like to remove? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get remove ' + fing)
+						break
+
+					elif food == "upgrade":
+						bing = input("Are you sure you want to upgrade? ")
+						if bing == 'y':
+							print(f"{bcolors.WARNING}")
+							system('sudo apt-get dist-upgrade')
+
+						else:
+							print("Cancelling...")
+							time.sleep(1)
+							break
+					
+					else:
+						print("Not an option!")
 
 
 		else:
@@ -447,7 +476,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.2.8
+	Bear Shell v1.2.9
 	Home page
 
 	""")
@@ -543,6 +572,8 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.2.9:
+	{bcolors.OKGREEN}[+] apt-get command finally added! Usage: type 'apt-get' and say wether you want to install, remove, update, or upgrade
 {bcolors.OKBLUE}Update 1.2.8:
 	{bcolors.OKGREEN}[+] Added the CD command
 	{bcolors.OKGREEN}[+] Added the neofetch command
@@ -631,7 +662,7 @@ def devPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.2.8
+	Bear Shell v1.2.9
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -720,6 +751,8 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.2.9:
+	{bcolors.OKGREEN}[+] apt-get command finally added! Usage: type 'apt-get' and say wether you want to install, remove, update, or upgrade
 {bcolors.OKBLUE}Update 1.2.8:
 	{bcolors.OKGREEN}[+] Added the CD command
 	{bcolors.OKGREEN}[+] Added the neofetch command
@@ -924,7 +957,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.2.8")
+	print("Ver 1.2.9")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -938,6 +971,7 @@ def devTermMain():
 		restart: restarts OS
 		cd: allows you to access a directory
 		(Linux Only!) neofetch: sends system info
+		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
 		More commands to come with future updates:
 		""")
@@ -1017,12 +1051,7 @@ def devTermMain():
 				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
 
 		elif bruhVariable == "pwd":
-			if name == 'nt':
-				print(f"{bcolors.WARNING}")
-				_ = system('dir ' + cwd)
-			else:
-				print(f"{bcolors.WARNING}")
-				_ = system('ls ' + cwd)
+			print(cwd)
 
 		elif bruhVariable == "Restart":
 			print("Restarting...")
@@ -1030,12 +1059,7 @@ def devTermMain():
 			exec(open('BearCMDos.py').read())
 
 		elif bruhVariable == "Pwd":
-			if name == 'nt':
-				print(f"{bcolors.WARNING}")
-				_ = system('dir ' + cwd)
-			else:
-				print(f"{bcolors.WARNING}")
-				_ = system('ls ' + cwd)
+			print(cwd)
 
 		elif bruhVariable == "cd":
 			fi = input("Where would you like to go? ")
@@ -1086,6 +1110,43 @@ def devTermMain():
 			else:
 				_ = system('neofetch')
 
+		elif bruhVariable == "apt-get":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				while True:
+					food = input("Would you like to run apt-get update, install, remove, or upgrade? ")
+					if food == "update":
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get update')
+						break
+
+					elif food == "install":
+						ding = input("What package do you want to install? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get install ' + ding)
+						break
+					
+					elif food == "remove":
+						fing = input("What package would you like to remove? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get remove ' + fing)
+						break
+
+					elif food == "upgrade":
+						bing = input("Are you sure you want to upgrade? ")
+						if bing == 'y':
+							print(f"{bcolors.WARNING}")
+							system('sudo apt-get dist-upgrade')
+
+						else:
+							print("Cancelling...")
+							time.sleep(1)
+							break
+					
+					else:
+						print("Not an option!")
+
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 import os
@@ -1111,7 +1172,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.2.8")
+	print("Ver 1.2.9")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
@@ -1125,6 +1186,7 @@ def rootTerm():
 		restart: restarts OS
 		cd: allows you to access a directory
 		(Linux Only!) neofetch: sends system info
+		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
 		More commands to come with future updates:
 		""")
@@ -1180,12 +1242,7 @@ def rootTerm():
 				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
 
 		elif bruhVariable == "pwd":
-			if name == 'nt':
-				print(f"{bcolors.WARNING}")
-				_ = system('dir ' + cwd)
-			else:
-				print(f"{bcolors.WARNING}")
-				_ = system('ls ' + cwd)
+			print(cwd)
 
 		elif bruhVariable == "restart":
 			print("Restarting...")
@@ -1198,12 +1255,7 @@ def rootTerm():
 			exec(open('BearCMDos.py').read())
 
 		elif bruhVariable == "Pwd":
-			if name == 'nt':
-				print(f"{bcolors.WARNING}")
-				_ = system('dir ' + cwd)
-			else:
-				print(f"{bcolors.WARNING}")
-				_ = system('ls ' + cwd)
+			print(cwd)
 				
 		elif bruhVariable == "Ls":
 			foo = input("What directory would you like to look through? ")
@@ -1261,6 +1313,43 @@ def rootTerm():
 				print("This command isn't available on your OS!")
 			else:
 				_ = system('neofetch')
+
+		elif bruhVariable == "apt-get":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				while True:
+					food = input("Would you like to run apt-get update, install, remove, or upgrade? ")
+					if food == "update":
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get update')
+						break
+
+					elif food == "install":
+						ding = input("What package do you want to install? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get install ' + ding)
+						break
+					
+					elif food == "remove":
+						fing = input("What package would you like to remove? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get remove ' + fing)
+						break
+
+					elif food == "upgrade":
+						bing = input("Are you sure you want to upgrade? ")
+						if bing == 'y':
+							print(f"{bcolors.WARNING}")
+							system('sudo apt-get dist-upgrade')
+
+						else:
+							print("Cancelling...")
+							time.sleep(1)
+							break
+					
+					else:
+						print("Not an option!")
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
