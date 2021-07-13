@@ -6,6 +6,10 @@ from os import system
 import sys
 from os import name
 
+login_pass = open('data/password.pass')
+login_name = open('data/username.pass')
+l_p = login_pass.read()
+l_n = login_name.read()
 
 def error(message):
 	clearScreen()
@@ -69,10 +73,6 @@ def loginPage():
 
 	clearScreen()
 
-	login_pass = open('data/password.pass')
-	login_name = open('data/username.pass')
-	l_p = login_pass.read()
-	l_n = login_name.read()
 	print("""
 	Bear Shell v1.2.9
 	Bear Shell Login Screen
@@ -253,7 +253,6 @@ def terminalMain():
 
 		elif bruhVariable == "root":
 			login = input("To access the root terminal, please enter your password: ")
-
 			if login == l_p:
 				dec = input(f"{bcolors.FAIL}Are you sure you want to enter the root terminal?{bcolors.HEADER} ")
 				if dec == 'y':
