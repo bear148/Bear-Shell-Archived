@@ -207,6 +207,7 @@ def terminalMain():
 		pwd: shows current directory
 		restart: restarts the OS
 		cd: allows you to access a directory
+		cat: allows you to view the contents of a file
 		(Linux Only!) neofetch: shows system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
@@ -427,9 +428,20 @@ def terminalMain():
 					else:
 						print("Not an option!")
 
+		elif bruhVariable == 'cat':
+			faf = input("What file would you like to look into? ")
+			if name == 'nt':
+				
+				_ = system('type ' + faf)
+				print("\n")
+			
+			else:
+				print(f"{bcolors.WARNING}")
+				_ = system('cat ' + faf)
+				print("\n")
 
 		else:
-			print("The command, " "" + bruhVariable + "" " wasn't found!")
+			print("The command, " "'" + bruhVariable + "'" " wasn't found!")
 
 def gameDevSelect():
 	class bcolors:
@@ -573,6 +585,7 @@ def homePage():
 		print(f"""
 {bcolors.OKBLUE}Update 1.2.9:
 	{bcolors.OKGREEN}[+] apt-get command finally added! Usage: type 'apt-get' and say wether you want to install, remove, update, or upgrade
+	{bcolors.OKGREEN}[+] cat command added; allows user to look into the contents of a file
 {bcolors.OKBLUE}Update 1.2.8:
 	{bcolors.OKGREEN}[+] Added the CD command
 	{bcolors.OKGREEN}[+] Added the neofetch command
@@ -752,6 +765,7 @@ def devPage():
 		print(f"""
 {bcolors.OKBLUE}Update 1.2.9:
 	{bcolors.OKGREEN}[+] apt-get command finally added! Usage: type 'apt-get' and say wether you want to install, remove, update, or upgrade
+	{bcolors.OKGREEN}[+] cat command added; allows user to look into the contents of a file
 {bcolors.OKBLUE}Update 1.2.8:
 	{bcolors.OKGREEN}[+] Added the CD command
 	{bcolors.OKGREEN}[+] Added the neofetch command
@@ -969,6 +983,7 @@ def devTermMain():
 		pwd: shows current directory
 		restart: restarts OS
 		cd: allows you to access a directory
+		cat: allows you to view the contents of a file
 		(Linux Only!) neofetch: sends system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
@@ -1146,6 +1161,18 @@ def devTermMain():
 					else:
 						print("Not an option!")
 
+		elif bruhVariable == 'cat':
+			faf = input("What file would you like to look into? ")
+			if name == 'nt':
+				
+				_ = system('type ' + faf)
+				print("\n")
+			
+			else:
+				print(f"{bcolors.WARNING}")
+				_ = system('cat ' + faf)
+				print("\n")
+
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 import os
@@ -1184,6 +1211,7 @@ def rootTerm():
 		pwd: shows current directory
 		restart: restarts OS
 		cd: allows you to access a directory
+		cat: allows you to view the contents of a file
 		(Linux Only!) neofetch: sends system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
@@ -1349,6 +1377,19 @@ def rootTerm():
 					
 					else:
 						print("Not an option!")
+
+		elif bruhVariable == 'cat':
+			faf = input("What file would you like to look into? ")
+			if name == 'nt':
+				
+				_ = system('type ' + faf)
+				print("\n")
+			
+			else:
+				print(f"{bcolors.WARNING}")
+				_ = system('cat ' + faf)
+				print("\n")
+
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")

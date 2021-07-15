@@ -32,9 +32,10 @@ By cosmetics I mean when typing a number in the menu for example, if the number 
 By flavors I mean making new flavors of Bear-Shell, like Ubuntu is a flavor of Debian, and such.
 
 ## Newest Updates
-In the most recent update, version 1.2.9, I added the apt-get command.
+In the most recent update, version 1.2.9, I added the apt-get command, and the cat command.
 
 - apt-get: Allows a user to run the basic apt commands, such as: install, remove, update, and upgrade
+- cat: Allows a user to view the contents of a file
 
 This is a small but also very BIG update. Yes I know there are only 4 apt-get commands right now but they are pretty much all you need. Now the user can install packages using the apt-get command right from the Bear-Shell!
 
@@ -64,6 +65,7 @@ The current commands that can be used in the included terminal are as listed:
 - cd
 - neofetch
 - apt-get
+- cat
 
 ## Additional Resources Used:
 (Text Editor, and Soon, Web Browser)
