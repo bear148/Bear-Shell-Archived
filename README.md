@@ -1,5 +1,5 @@
 ## What IS Bear-Shell?
-Bear-Shell is a command-line based shell developed by [Michael](https://github.com/BizzyPythonBear).
+Bear-Shell is a command-line based shell developed by [Michael](https://github.com/BizzyPythonBear). This shell specializes in high efficiency and ease of use.
 
 ## Why should I use Bear-Shell?
 I do not expect Bear-Shell to be used for real life applications, as it requires python 3 to be ran. In the future, I will more than likely be adding things like running commands as root, cd'ing into directories, and lots more. As of right now, it basically has the bare minimum to be used as, technically an os. With the new addition of the ls, and pwd command, you can now navigate even inside of the terminal.
