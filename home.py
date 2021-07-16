@@ -48,7 +48,7 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear Shell v1.3.0
+	Bear Shell v1.3.0.1
 	Bear Shell Registration
 	""")
 
@@ -75,7 +75,7 @@ def loginPage():
 	clearScreen()
 
 	print("""
-	Bear Shell v1.3.0
+	Bear Shell v1.3.0.1
 	Bear Shell Login Screen
 	""")
 
@@ -195,7 +195,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.0")
+	print("Ver 1.3.0.1")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -519,7 +519,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.0
+	Bear Shell v1.3.0.1
 	Home page
 
 	""")
@@ -615,6 +615,10 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Patch 1.3.0.1:
+	{bcolors.OKGREEN}[+] Fixed restarting; didn't actually restart the program
+	{bcolors.OKGREEN}[+] Fixed DevPage bug where if command didn't exist it return user back to regular homepage instead of dev page
+	{bcolors.OKGREEN}[+] Fixed small bugs
 {bcolors.OKBLUE}Update 1.3.0:
 	{bcolors.OKGREEN}[+] Git command added!
 	  {bcolors.WARNING}-- More info inside terminal
@@ -658,7 +662,7 @@ def homePage():
 	{bcolors.OKGREEN}[+] Basic Files Added
 		{bcolors.FAIL}[-] Lots Of Bugs
 {bcolors.OKBLUE}--------------------------------------------
-{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Cmd-Line-OS
+{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Bear-Shell
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}Legend:
@@ -686,12 +690,13 @@ def homePage():
 	elif select == '8':
 		print("Restarting...")
 		time.sleep(1)
-		exec(open('BearCMDos.py').read())
+		os.system("python3 BearCMDos.py")
 
 	elif select == '9':
 		print("Shutting down...")
 		print("Have a nice day!")
 		time.sleep(1)
+		clearScreen()
 		os.system('exit')
 		sys.exit()
 	
@@ -708,8 +713,9 @@ def devPage():
 	login_name = open('data/username.pass')
 	l_p = login_pass.read()
 	l_n = login_name.read()
+	textColor = bcolors.OKGREEN
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.0
+	Bear Shell v1.3.0.1
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -729,10 +735,11 @@ def devPage():
 	[10] To games
 	""")
 
-	select = input(f"[?]:{bcolors.OKGREEN} ")
+	select = input(f"[?]:{textColor} ")
 	print(f"{bcolors.OKBLUE}")
 	if select == '1':
 		error()
+		print(textColor)
 
 	elif select == '2':
 		clearScreen()
@@ -798,6 +805,10 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Patch 1.3.0.1:
+	{bcolors.OKGREEN}[+] Fixed restarting; didn't actually restart the program
+	{bcolors.OKGREEN}[+] Fixed DevPage bug where if command didn't exist it return user back to regular homepage instead of dev page
+	{bcolors.OKGREEN}[+] Fixed small bugs
 {bcolors.OKBLUE}Update 1.3.0:
 	{bcolors.OKGREEN}[+] Git command added!
 	  {bcolors.WARNING}-- More info inside terminal
@@ -869,12 +880,13 @@ def devPage():
 	elif select == '8':
 		print("Restarting...")
 		time.sleep(1)
-		exec(open('BearCMDos.py').read())
+		os.system("python3 BearCMDos.py")
 
 	elif select == '9':
 		print("Shutting down...")
 		print("Have a nice day!")
 		time.sleep(1)
+		clearScreen()
 		os.system('exit')
 		sys.exit()
 	
@@ -883,7 +895,9 @@ def devPage():
 		gameDevSelect()
 	
 	else:
-		error()
+		clearScreen()
+		errorHandle("Incorrect Command!", ErrorCodes.ErrCode1)
+		devPage()
 
 def snakeGame():
 	import random
@@ -1008,7 +1022,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.0")
+	print("Ver 1.3.0.1")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -1267,7 +1281,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.0")
+	print("Ver 1.3.0.1")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
