@@ -23,6 +23,7 @@ class ErrorCodes:
 	Err4 = "Illegal Operation (Error Num: 0x0004)"
 	Err5 = "Not an accessable command (Error Num: 0x0005)"
 	Err6 = "Not a valid directory (Error Num: 0x0006"
+	ErrCode1 = "(Error Num: 0x00A1)"
 
 def clearScreen():
 	if name == 'nt':
@@ -208,6 +209,7 @@ def terminalMain():
 		restart: restarts the OS
 		cd: allows you to access a directory
 		cat: allows you to view the contents of a file
+		git: allows you to run basic git commands
 		(Linux Only!) neofetch: shows system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
@@ -427,6 +429,42 @@ def terminalMain():
 					
 					else:
 						print("Not an option!")
+			
+		elif bruhVariable == 'git':
+			while True:
+				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
+				if bing == 'git init':
+					system('git init')
+					break
+				elif bing == 'git add':
+					jaf = input("What files would you like to add? (* for all): ")
+					system('git add ' + jaf)
+					break
+				elif bing == 'git commit':
+					fjd = input("What would you like the commit message to be? ")
+					fling = f'"{fjd}"'
+					system('git commit -m ' + fling)
+					break
+				elif bing == 'git branch':
+					sad = input("What branch do you want to use? ")
+					system('git branch -M '+ sad)
+					break
+				elif bing == 'git remote add origin':
+					bva = input("What remote origin thing or whatever do you want to add? ")
+					system('git remote add origin ' + bva)
+					break
+				elif bing == 'git push':
+					fja = input("What branch do you want to push too? ")
+					system('git push -u ' + fja)
+					break
+				elif bing == 'exit':
+					print("Leaving git...")
+					time.sleep(1)
+					break
+
+				else:
+					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
+					print(f"{bcolors.WARNING}")
 
 		elif bruhVariable == 'cat':
 			faf = input("What file would you like to look into? ")
@@ -491,7 +529,7 @@ def homePage():
 	Home page
 
 	""")
-	print(f"{bcolors.OKBLUE}Welcome " + l_n)
+	print(f"{bcolors.OKBLUE}Welcome, " + l_n)
 	print(f"{bcolors.OKBLUE}The Date Is: " + time.strftime("%m/%d/%y"))
 	print(f"""{bcolors.OKBLUE}
 	[1] To Open Google
@@ -583,6 +621,9 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.3.0:
+	{bcolors.OKGREEN}[+] Git command added!
+	  {bcolors.WARNING}-- More info inside terminal
 {bcolors.OKBLUE}Update 1.2.9:
 	{bcolors.OKGREEN}[+] apt-get command finally added! Usage: type 'apt-get' and say wether you want to install, remove, update, or upgrade
 	{bcolors.OKGREEN}[+] cat command added; allows user to look into the contents of a file
@@ -763,6 +804,9 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.3.0:
+	{bcolors.OKGREEN}[+] Git command added!
+	  {bcolors.WARNING}-- More info inside terminal
 {bcolors.OKBLUE}Update 1.2.9:
 	{bcolors.OKGREEN}[+] apt-get command finally added! Usage: type 'apt-get' and say wether you want to install, remove, update, or upgrade
 	{bcolors.OKGREEN}[+] cat command added; allows user to look into the contents of a file
@@ -984,6 +1028,7 @@ def devTermMain():
 		restart: restarts OS
 		cd: allows you to access a directory
 		cat: allows you to view the contents of a file
+		git: allows you to run basic git commands
 		(Linux Only!) neofetch: sends system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
@@ -1173,6 +1218,42 @@ def devTermMain():
 				_ = system('cat ' + faf)
 				print("\n")
 
+		elif bruhVariable == 'git':
+			while True:
+				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
+				if bing == 'git init':
+					system('git init')
+					break
+				elif bing == 'git add':
+					jaf = input("What files would you like to add? (* for all): ")
+					system('git add ' + jaf)
+					break
+				elif bing == 'git commit':
+					fjd = input("What would you like the commit message to be? ")
+					fling = f'"{fjd}"'
+					system('git commit -m ' + fling)
+					break
+				elif bing == 'git branch':
+					sad = input("What branch do you want to use? ")
+					system('git branch -M '+ sad)
+					break
+				elif bing == 'git remote add origin':
+					bva = input("What remote origin thing or whatever do you want to add? ")
+					system('git remote add origin ' + bva)
+					break
+				elif bing == 'git push':
+					fja = input("What branch do you want to push too? ")
+					system('git push -u ' + fja)
+					break
+				elif bing == 'exit':
+					print("Leaving git...")
+					time.sleep(1)
+					break
+
+				else:
+					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
+					print(f"{bcolors.WARNING}")
+
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 import os
@@ -1212,6 +1293,7 @@ def rootTerm():
 		restart: restarts OS
 		cd: allows you to access a directory
 		cat: allows you to view the contents of a file
+		git: allows you to run basic git commands
 		(Linux Only!) neofetch: sends system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 
@@ -1389,6 +1471,42 @@ def rootTerm():
 				print(f"{bcolors.WARNING}")
 				_ = system('cat ' + faf)
 				print("\n")
+
+		elif bruhVariable == 'git':
+			while True:
+				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
+				if bing == 'git init':
+					system('git init')
+					break
+				elif bing == 'git add':
+					jaf = input("What files would you like to add? (* for all): ")
+					system('git add ' + jaf)
+					break
+				elif bing == 'git commit':
+					fjd = input("What would you like the commit message to be? ")
+					fling = f'"{fjd}"'
+					system('git commit -m ' + fling)
+					break
+				elif bing == 'git branch':
+					sad = input("What branch do you want to use? ")
+					system('git branch -M '+ sad)
+					break
+				elif bing == 'git remote add origin':
+					bva = input("What remote origin thing or whatever do you want to add? ")
+					system('git remote add origin ' + bva)
+					break
+				elif bing == 'git push':
+					fja = input("What branch do you want to push too? ")
+					system('git push -u ' + fja)
+					break
+				elif bing == 'exit':
+					print("Leaving git...")
+					time.sleep(1)
+					break
+
+				else:
+					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
+					print(f"{bcolors.WARNING}")
 
 
 		else:
