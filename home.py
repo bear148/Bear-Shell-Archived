@@ -48,7 +48,7 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear Shell v1.2.9
+	Bear Shell v1.3.0
 	Bear Shell Registration
 	""")
 
@@ -75,7 +75,7 @@ def loginPage():
 	clearScreen()
 
 	print("""
-	Bear Shell v1.2.9
+	Bear Shell v1.3.0
 	Bear Shell Login Screen
 	""")
 
@@ -195,7 +195,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.2.9")
+	print("Ver 1.3.0")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -435,28 +435,22 @@ def terminalMain():
 				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
 				if bing == 'git init':
 					system('git init')
-					break
 				elif bing == 'git add':
 					jaf = input("What files would you like to add? (* for all): ")
 					system('git add ' + jaf)
-					break
 				elif bing == 'git commit':
 					fjd = input("What would you like the commit message to be? ")
 					fling = f'"{fjd}"'
 					system('git commit -m ' + fling)
-					break
 				elif bing == 'git branch':
 					sad = input("What branch do you want to use? ")
 					system('git branch -M '+ sad)
-					break
 				elif bing == 'git remote add origin':
 					bva = input("What remote origin thing or whatever do you want to add? ")
 					system('git remote add origin ' + bva)
-					break
 				elif bing == 'git push':
 					fja = input("What branch do you want to push too? ")
 					system('git push -u ' + fja)
-					break
 				elif bing == 'exit':
 					print("Leaving git...")
 					time.sleep(1)
@@ -525,7 +519,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.2.9
+	Bear Shell v1.3.0
 	Home page
 
 	""")
@@ -715,7 +709,7 @@ def devPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.2.9
+	Bear Shell v1.3.0
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -1014,7 +1008,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.2.9")
+	print("Ver 1.3.0")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -1223,28 +1217,22 @@ def devTermMain():
 				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
 				if bing == 'git init':
 					system('git init')
-					break
 				elif bing == 'git add':
 					jaf = input("What files would you like to add? (* for all): ")
 					system('git add ' + jaf)
-					break
 				elif bing == 'git commit':
 					fjd = input("What would you like the commit message to be? ")
 					fling = f'"{fjd}"'
 					system('git commit -m ' + fling)
-					break
 				elif bing == 'git branch':
 					sad = input("What branch do you want to use? ")
 					system('git branch -M '+ sad)
-					break
 				elif bing == 'git remote add origin':
 					bva = input("What remote origin thing or whatever do you want to add? ")
 					system('git remote add origin ' + bva)
-					break
 				elif bing == 'git push':
 					fja = input("What branch do you want to push too? ")
 					system('git push -u ' + fja)
-					break
 				elif bing == 'exit':
 					print("Leaving git...")
 					time.sleep(1)
@@ -1279,7 +1267,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.2.9")
+	print("Ver 1.3.0")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
