@@ -33,6 +33,7 @@ By flavors I mean making new flavors of Bear-Shell, like Ubuntu is a flavor of D
 
 ## Newest Updates
 <b>Disclaimer!</b> Patches will not be shown here! This area is for big releases only! The fourth digit is for patches, and those are pretty much always bug fixes, so they wont be put here.
+<br>
 In the most recent update, version 1.3.0, I added the git command.
 
 - git: allows a user to run the git commands, like git commit, git push, etc, from the terminal
