@@ -1,10 +1,13 @@
-
+import keyboard
 import time
 import os
 import socket
 from os import system
 import sys
 from os import name
+import msvcrt
+import psutil
+import pygame
 
 login_pass = open('data/password.pass')
 login_name = open('data/username.pass')
@@ -15,6 +18,12 @@ def error(message):
 	clearScreen()
 	print(f"{bcolors.FAIL}" + message)
 	gameSelect()
+
+def ramUsage():
+	return int(psutil.virtual_memory().total - psutil.virtual_memory().available)
+
+def cpuUsage():
+	return psutil.cpu_percent(interval=0.5)
 
 class ErrorCodes:
 	Err1 = "Syntax Error (Error Num: 0x0001)"
@@ -48,7 +57,7 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear Shell v1.3.0.1
+	Bear Shell v1.3.1.1
 	Bear Shell Registration
 	""")
 
@@ -75,7 +84,7 @@ def loginPage():
 	clearScreen()
 
 	print("""
-	Bear Shell v1.3.0.1
+	Bear Shell v1.3.1.1
 	Bear Shell Login Screen
 	""")
 
@@ -103,6 +112,9 @@ def loginPage():
 			devTermMain()
 			break
 
+		elif log == "bckgrnd":
+			backgroundProcess()
+			break
 
 		else:
 			print("Wrong Passowrd To " + l_n)
@@ -195,7 +207,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.0.1")
+	print("Ver 1.3.1.1")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -336,12 +348,12 @@ def terminalMain():
 		elif bruhVariable == "restart":
 			print("Restarting...")
 			time.sleep(1)
-			exec(open('BearCMDos.py').read())
+			os.system("python3 BearCMDos.py")
 
 		elif bruhVariable == "Restart":
 			print("Restarting...")
 			time.sleep(1)
-			exec(open('BearCMDos.py').read())
+			os.system("python3 BearCMDos.py")
 
 		elif bruhVariable == "Pwd":
 			print(cwd)
@@ -429,6 +441,14 @@ def terminalMain():
 					
 					else:
 						print("Not an option!")
+
+		elif bruhVariable == 'pip':
+			while True:
+				daisd = input("What pip package would you like to install? ")
+				if daisd == 'exit':
+					break
+				else:
+					os.system('pip3 install ' + daisd)
 			
 		elif bruhVariable == 'git':
 			while True:
@@ -519,7 +539,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.0.1
+	Bear Shell v1.3.1.1
 	Home page
 
 	""")
@@ -534,7 +554,7 @@ def homePage():
 	[6] To Open Calculator
 	[7] Show Recent Updates
 	[8] To restart the system
-	[9] To Close OS Safely
+	[9] To Close Shell Safely
 	[10] To play games
 	""")
 
@@ -615,6 +635,9 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.3.1.1:
+	{bcolors.OKGREEN}[+] Added 'pip' command
+	{bcolors.OKGREEN}[+] Framework access; see developerGuide.txt for details
 {bcolors.OKBLUE}Patch 1.3.0.1:
 	{bcolors.OKGREEN}[+] Fixed restarting; didn't actually restart the program
 	{bcolors.OKGREEN}[+] Fixed DevPage bug where if command didn't exist it return user back to regular homepage instead of dev page
@@ -662,7 +685,7 @@ def homePage():
 	{bcolors.OKGREEN}[+] Basic Files Added
 		{bcolors.FAIL}[-] Lots Of Bugs
 {bcolors.OKBLUE}--------------------------------------------
-{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Bear-Shell
+{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Cmd-Line-OS
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}Legend:
@@ -715,7 +738,7 @@ def devPage():
 	l_n = login_name.read()
 	textColor = bcolors.OKGREEN
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.0.1
+	Bear Shell v1.3.1.1
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -731,7 +754,7 @@ def devPage():
 	[6] To Open Calculator
 	[7] To Show Recent Updates
 	[8] To restart the system
-	[9] To Close OS Safely
+	[9] To Close Shell Safely
 	[10] To games
 	""")
 
@@ -805,6 +828,9 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.3.1.1:
+	{bcolors.OKGREEN}[+] Added 'pip' command
+	{bcolors.OKGREEN}[+] Framework access; see developerGuide.txt for details
 {bcolors.OKBLUE}Patch 1.3.0.1:
 	{bcolors.OKGREEN}[+] Fixed restarting; didn't actually restart the program
 	{bcolors.OKGREEN}[+] Fixed DevPage bug where if command didn't exist it return user back to regular homepage instead of dev page
@@ -1022,7 +1048,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.0.1")
+	print("Ver 1.3.1.1")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -1256,6 +1282,14 @@ def devTermMain():
 					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
 					print(f"{bcolors.WARNING}")
 
+		elif bruhVariable == 'pip':
+			while True:
+				daisd = input("What pip package would you like to install? ")
+				if daisd == 'exit':
+					break
+				else:
+					os.system('pip3 install ' + daisd)
+
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 import os
@@ -1281,7 +1315,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.0.1")
+	print("Ver 1.3.1.1")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
@@ -1510,6 +1544,13 @@ def rootTerm():
 					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
 					print(f"{bcolors.WARNING}")
 
+		elif bruhVariable == 'pip':
+			while True:
+				daisd = input("What pip package would you like to install? ")
+				if daisd == 'exit':
+					break
+				else:
+					os.system('pip3 install ' + daisd)
 
 		else:
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
@@ -2006,5 +2047,301 @@ def devEditorMain():
 	TextEditor(root)
 	# Root Window Looping
 	root.mainloop()
+
+def backgroundProcess():
+	clearScreen()
+	print("Bear-Shell Frame Work")
+	print("Ver 13021")
+	cwd = os.getcwd()
+		
+	def helpCom():
+		clearScreen()
+		print("""
+		UserInfo: Tells you current user's information
+		Root: Allows root terminal access
+		python3: Allows you to run .py files
+		clear: Clears screen
+		ls: shows contents of given directory
+		pwd: shows current directory
+		restart: restarts the OS
+		cd: allows you to access a directory
+		cat: allows you to view the contents of a file
+		git: allows you to run basic git commands
+		(Linux Only!) neofetch: shows system info
+		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
+		usage: CPU and RAM usage
+
+
+		More commands to come with future updates:
+		""")
+	while True:
+		f = input("~ $ ")
+		if f == "Help":
+			clearScreen()
+			helpCom()
+		elif f == "help":
+			clearScreen()
+			helpCom()
+
+		elif f == "UserInfo":
+			clearScreen()
+			b_login = input(str("Please Enter The Password To " + l_n + " To view this data: "))
+			if b_login == l_p:
+				print("Username: " + l_n)
+				print("Password: " + l_p)
+			else:
+				print("Wrong password")
+
+		elif f == "userinfo":
+			clearScreen()
+			b_login = input(str("Please Enter The Password To " + l_n + " To view this data: "))
+			if b_login == l_p:
+				print("Username: " + l_n)
+				print("Password: " + l_p)
+			else:
+				print("Wrong password")
+
+		elif f == "root":
+			login = input("To access the root terminal, please enter your password: ")
+			if login == l_p:
+				dec = input(f"{bcolors.FAIL}Are you sure you want to enter the root terminal?{bcolors.HEADER} ")
+				if dec == 'y':
+					rootTerm()
+				elif dec == 'Y':
+					rootTerm()
+				elif dec == 'n':
+					print("Returning to regular terminal...")
+					time.sleep(0.5)
+					terminalMain()
+				elif dec == 'N':
+					print("Returning to regular terminal...")
+					time.sleep(0.5)
+					terminalMain()
+
+		elif f == "Root":
+			login = input("To access the root terminal, please enter your password: ")
+
+			if login == l_p:
+				dec = input("Are you sure you want to enter the root terminal? ")
+				if dec == 'y':
+					rootTerm()
+				elif dec == 'Y':
+					rootTerm()
+				elif dec == 'n':
+					print("Returning to regular terminal...")
+					time.sleep(0.5)
+					terminalMain()
+					break
+				elif dec == 'N':
+					print("Returning to regular terminal...")
+					time.sleep(0.5)
+					terminalMain()
+					break
+
+			elif login != l_p:
+				print("Wrong password!")
+
+		elif f == "clear":
+			clearScreen()
+
+		elif f == "Clear":
+			clearScreen()
+
+		elif f == "python3":
+			m = input("What file would you like to run? ")
+			if m.endswith('.py'):
+				os.system(f'python3 {m}')
+			else:
+				print(m + " is not a py file.")
+
+		elif f == "ls":
+			foo = input("What directory would you like to look through? ")
+			isdir = os.path.isdir(foo)
+
+			if isdir:
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + foo)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + foo)
+
+			elif foo == 'ls':
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + cwd)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + cwd)
+
+			else:
+				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
+
+		elif f == "pwd":
+			print(cwd)
+
+		elif f == "restart":
+			print("Restarting...")
+			time.sleep(1)
+			os.system("python3 BearCMDos.py")
+
+		elif f == "Restart":
+			print("Restarting...")
+			time.sleep(1)
+			os.system("python3 BearCMDos.py")
+
+		elif f == "Pwd":
+			print(cwd)
+
+		elif f == "cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+		elif f == "Cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+			else:
+				errorHandle("Directory doesn't exist!", ErrorCodes.Err6)
+
+		elif f == "neofetch":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				_ = system('neofetch')
+
+		elif f == "apt-get":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				while True:
+					food = input("Would you like to run apt-get update, install, remove, or upgrade? ")
+					if food == "update":
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get update')
+						break
+
+					elif food == "install":
+						ding = input("What package do you want to install? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get install ' + ding)
+						break
+					
+					elif food == "remove":
+						fing = input("What package would you like to remove? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get remove ' + fing)
+						break
+
+					elif food == "upgrade":
+						bing = input("Are you sure you want to upgrade? ")
+						if bing == 'y':
+							print(f"{bcolors.WARNING}")
+							system('sudo apt-get dist-upgrade')
+
+						else:
+							print("Cancelling...")
+							time.sleep(1)
+							break
+					
+					else:
+						print("Not an option!")
+
+		elif f == 'pip':
+			while True:
+				daisd = input("What pip package would you like to install? ")
+				if daisd == 'exit':
+					break
+				else:
+					os.system('pip3 install ' + daisd)
+			
+		elif f == 'git':
+			while True:
+				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
+				if bing == 'git init':
+					system('git init')
+				elif bing == 'git add':
+					jaf = input("What files would you like to add? (* for all): ")
+					system('git add ' + jaf)
+				elif bing == 'git commit':
+					fjd = input("What would you like the commit message to be? ")
+					fling = f'"{fjd}"'
+					system('git commit -m ' + fling)
+				elif bing == 'git branch':
+					sad = input("What branch do you want to use? ")
+					system('git branch -M '+ sad)
+				elif bing == 'git remote add origin':
+					bva = input("What remote origin thing or whatever do you want to add? ")
+					system('git remote add origin ' + bva)
+				elif bing == 'git push':
+					fja = input("What branch do you want to push too? ")
+					system('git push -u ' + fja)
+				elif bing == 'exit':
+					print("Leaving git...")
+					time.sleep(1)
+					break
+
+				else:
+					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
+					print(f"{bcolors.WARNING}")
+
+		elif f == 'cat':
+			faf = input("What file would you like to look into? ")
+			if name == 'nt':
+				
+				_ = system('type ' + faf)
+				print("\n")
+			
+			else:
+				print(f"{bcolors.WARNING}")
+				_ = system('cat ' + faf)
+				print("\n")	
+
+		elif f == 'usage':
+			print("Press 'q' to stop")
+			while True:
+				time.sleep(1)
+				clearScreen()
+				print('CPU: {} %'.format(cpuUsage()))
+				print('RAM: {} MB'.format(int(ramUsage() / 1024 / 1024)))
+				
+				if keyboard.is_pressed('q'):
+					print("Quiting...")
+					time.sleep(.43223124)
+					clearScreen()
+					break
+
+		else:
+			print("Command does not exist!")	
 
 clearScreen()

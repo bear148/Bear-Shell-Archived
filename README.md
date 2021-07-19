@@ -40,6 +40,11 @@ In the most recent update, version 1.3.0, I added the git command.
 
 I was looking forwards to this feature since I really needed it for when I'm finished working for the day and need to commit, push and stuff to the repository. Now, I'm slightly closer to making it so that I never have to leave the Bear-Shell!
 
+## Newest Patches
+<b>The newest patch is v1.3.1.1</b>
+<br>
+<p>The newest patch included some bug fixes, framework access, and the pip command.</p>
+
 ## Older Updates
 - Ver 1.2.9
 - Ver 1.2.8
