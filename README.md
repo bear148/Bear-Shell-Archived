@@ -34,18 +34,19 @@ By flavors I mean making new flavors of Bear-Shell, like Ubuntu is a flavor of D
 ## Newest Updates
 <b>Disclaimer!</b> Patches will not be shown here! This area is for big releases only! The fourth digit is for patches, and those are pretty much always bug fixes, so they wont be put here.
 <br>
-In the most recent update, version 1.3.0, I added the git command.
+In the most recent update, version 1.3.1.1, I added the pip command, framework access, and fixed some weird bugs.
 
-- git: allows a user to run the git commands, like git commit, git push, etc, from the terminal
+- pip: allows the user to install python packages from the terminal
 
-I was looking forwards to this feature since I really needed it for when I'm finished working for the day and need to commit, push and stuff to the repository. Now, I'm slightly closer to making it so that I never have to leave the Bear-Shell!
+I was looking forwards to this feature since I really needed it for when I'm missing a specific package, and I need to install it quickly!
 
 ## Newest Patches
-<b>The newest patch is v1.3.1.1</b>
+<b>The newest patch is v1.3.0.1</b>
 <br>
-<p>The newest patch included some bug fixes, framework access, and the pip command.</p>
+<p>The newest patch included mostly bug fixes.</p>
 
 ## Older Updates
+- Ver 1.3.0
 - Ver 1.2.9
 - Ver 1.2.8
 - Ver 1.2.7
