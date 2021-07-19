@@ -638,6 +638,7 @@ def homePage():
 {bcolors.OKBLUE}Update 1.3.1.1:
 	{bcolors.OKGREEN}[+] Added 'pip' command
 	{bcolors.OKGREEN}[+] Framework access; see developerGuide.txt for details
+	{bcolors.OKGREEN}[+] Weird bug fix
 {bcolors.OKBLUE}Patch 1.3.0.1:
 	{bcolors.OKGREEN}[+] Fixed restarting; didn't actually restart the program
 	{bcolors.OKGREEN}[+] Fixed DevPage bug where if command didn't exist it return user back to regular homepage instead of dev page
@@ -831,6 +832,7 @@ def devPage():
 {bcolors.OKBLUE}Update 1.3.1.1:
 	{bcolors.OKGREEN}[+] Added 'pip' command
 	{bcolors.OKGREEN}[+] Framework access; see developerGuide.txt for details
+	{bcolors.OKGREEN}[+] Weird bug fix
 {bcolors.OKBLUE}Patch 1.3.0.1:
 	{bcolors.OKGREEN}[+] Fixed restarting; didn't actually restart the program
 	{bcolors.OKGREEN}[+] Fixed DevPage bug where if command didn't exist it return user back to regular homepage instead of dev page
@@ -913,7 +915,6 @@ def devPage():
 		print("Have a nice day!")
 		time.sleep(1)
 		clearScreen()
-		os.system('exit')
 		sys.exit()
 	
 	elif select == '10':
@@ -1733,7 +1734,7 @@ def editorMain():
 			op = messagebox.askyesno("WARNING","Your Unsaved Data May be Lost!!")
 			if op>0:
 				self.root.destroy()
-				H.homePage()
+				homePage()
 			else:
 				return
 		# Defining Cut Funtion
@@ -2070,6 +2071,7 @@ def backgroundProcess():
 		(Linux Only!) neofetch: shows system info
 		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
 		usage: CPU and RAM usage
+		exit: quits shell
 
 
 		More commands to come with future updates:
@@ -2082,6 +2084,10 @@ def backgroundProcess():
 		elif f == "help":
 			clearScreen()
 			helpCom()
+
+		elif f == "exit":
+			os.system('exit')
+			sys.exit()
 
 		elif f == "UserInfo":
 			clearScreen()
@@ -2330,16 +2336,18 @@ def backgroundProcess():
 		elif f == 'usage':
 			print("Press 'q' to stop")
 			while True:
-				time.sleep(1)
-				clearScreen()
-				print('CPU: {} %'.format(cpuUsage()))
-				print('RAM: {} MB'.format(int(ramUsage() / 1024 / 1024)))
-				
+
 				if keyboard.is_pressed('q'):
 					print("Quiting...")
 					time.sleep(.43223124)
 					clearScreen()
 					break
+			
+				time.sleep(1)
+				clearScreen()
+				print('CPU: {} %'.format(cpuUsage()))
+				print('RAM: {} MB'.format(int(ramUsage() / 1024 / 1024)))
+				
 
 		else:
 			print("Command does not exist!")	
