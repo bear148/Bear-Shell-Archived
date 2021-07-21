@@ -7,12 +7,17 @@ import sys
 from os import name
 import msvcrt
 import psutil
-import pygame
+import utils.calculatorBase as cb
 
 login_pass = open('data/password.pass')
 login_name = open('data/username.pass')
 l_p = login_pass.read()
 l_n = login_name.read()
+
+def reset():
+	print("Restarting...")
+	time.sleep(1)
+	os.system("python3 BearCMDos.py")
 
 def error(message):
 	clearScreen()
@@ -114,6 +119,10 @@ def loginPage():
 
 		elif log == "bckgrnd":
 			backgroundProcess()
+			break
+
+		elif log == "testing":
+			testingTerm()
 			break
 
 		else:
@@ -2351,5 +2360,362 @@ def backgroundProcess():
 
 		else:
 			print("Command does not exist!")	
+
+def testingTerm():
+	clearScreen()
+	print("Bear-Shell Frame Work (Testing)")
+	print("Ver 13021a")
+	cwd = os.getcwd()
+		
+	def helpCom():
+		clearScreen()
+		print("""
+		UserInfo: Tells you current user's information
+
+		python3: Allows you to run .py files
+		clear: Clears screen
+		ls: shows contents of given directory
+		pwd: shows current directory
+		restart: restarts the OS
+		cd: allows you to access a directory
+		cat: allows you to view the contents of a file
+		git: allows you to run basic git commands
+		(Linux Only!) neofetch: shows system info
+		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
+		usage: CPU and RAM usage
+		exit: quits shell
+		test: goes to main test term
+
+
+		More commands to come with future updates:
+		""")
+	while True:
+		f = input("~ $ ")
+		if f == "Help":
+			clearScreen()
+			helpCom()
+		elif f == "help":
+			clearScreen()
+			helpCom()
+
+		elif f == "exit":
+			os.system('exit')
+			sys.exit()
+
+		elif f == "UserInfo":
+			clearScreen()
+			b_login = input(str("Please Enter The Password To " + l_n + " To view this data: "))
+			if b_login == l_p:
+				print("Username: " + l_n)
+				print("Password: " + l_p)
+			else:
+				print("Wrong password")
+
+		elif f == "userinfo":
+			clearScreen()
+			b_login = input(str("Please Enter The Password To " + l_n + " To view this data: "))
+			if b_login == l_p:
+				print("Username: " + l_n)
+				print("Password: " + l_p)
+			else:
+				print("Wrong password")
+
+		elif f == "clear":
+			clearScreen()
+
+		elif f == "Clear":
+			clearScreen()
+
+		elif f == "python3":
+			m = input("What file would you like to run? ")
+			if m.endswith('.py'):
+				os.system(f'python3 {m}')
+			else:
+				print(m + " is not a py file.")
+
+		elif f == "ls":
+			foo = input("What directory would you like to look through? ")
+			isdir = os.path.isdir(foo)
+
+			if isdir:
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + foo)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + foo)
+
+			elif foo == 'ls':
+				if name == 'nt':
+					print(f"{bcolors.WARNING}")
+					_ = system('dir ' + cwd)
+				else:
+					print(f"{bcolors.WARNING}")
+					_ = system('ls ' + cwd)
+
+			else:
+				errorHandle("That directory isn't valid!", ErrorCodes.Err6)
+
+		elif f == "pwd":
+			print(cwd)
+
+		elif f == "restart":
+			print("Restarting...")
+			time.sleep(1)
+			os.system("python3 BearCMDos.py")
+
+		elif f == "Restart":
+			print("Restarting...")
+			time.sleep(1)
+			os.system("python3 BearCMDos.py")
+
+		elif f == "Pwd":
+			print(cwd)
+
+		elif f == "cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+		elif f == "Cd":
+			fi = input("Where would you like to go? ")
+			workdir = os.path.isdir(fi)
+			if workdir:
+				perms = os.access(fi, os.R_OK)
+				if name == 'nt':
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder!")
+				else:
+					perms = os.access(fi, os.R_OK)
+					if perms:
+						system('cd ' + fi)
+						cwd = fi
+					else:
+						print("You don't have permission to access that folder! ")
+
+			else:
+				errorHandle("Directory doesn't exist!", ErrorCodes.Err6)
+
+		elif f == "neofetch":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				_ = system('neofetch')
+
+		elif f == "apt-get":
+			if name == 'nt':
+				print("This command isn't available on your OS!")
+			else:
+				while True:
+					food = input("Would you like to run apt-get update, install, remove, or upgrade? ")
+					if food == "update":
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get update')
+						break
+
+					elif food == "install":
+						ding = input("What package do you want to install? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get install ' + ding)
+						break
+					
+					elif food == "remove":
+						fing = input("What package would you like to remove? ")
+						print(f"{bcolors.WARNING}")
+						system('sudo apt-get remove ' + fing)
+						break
+
+					elif food == "upgrade":
+						bing = input("Are you sure you want to upgrade? ")
+						if bing == 'y':
+							print(f"{bcolors.WARNING}")
+							system('sudo apt-get dist-upgrade')
+
+						else:
+							print("Cancelling...")
+							time.sleep(1)
+							break
+					
+					else:
+						print("Not an option!")
+
+		elif f == 'pip':
+			while True:
+				daisd = input("What pip package would you like to install? ")
+				if daisd == 'exit':
+					break
+				else:
+					os.system('pip3 install ' + daisd)
+			
+		elif f == 'git':
+			while True:
+				bing = input("What git command would you like to run? (git init, git add, git commit, git branch, git remote add origin, or git push ('exit' to leave)) ")
+				if bing == 'git init':
+					system('git init')
+				elif bing == 'git add':
+					jaf = input("What files would you like to add? (* for all): ")
+					system('git add ' + jaf)
+				elif bing == 'git commit':
+					fjd = input("What would you like the commit message to be? ")
+					fling = f'"{fjd}"'
+					system('git commit -m ' + fling)
+				elif bing == 'git branch':
+					sad = input("What branch do you want to use? ")
+					system('git branch -M '+ sad)
+				elif bing == 'git remote add origin':
+					bva = input("What remote origin thing or whatever do you want to add? ")
+					system('git remote add origin ' + bva)
+				elif bing == 'git push':
+					fja = input("What branch do you want to push too? ")
+					system('git push -u ' + fja)
+				elif bing == 'exit':
+					print("Leaving git...")
+					time.sleep(1)
+					break
+
+				else:
+					errorHandle("Not a valid command! ", ErrorCodes.ErrCode1)
+					print(f"{bcolors.WARNING}")
+
+		elif f == 'cat':
+			faf = input("What file would you like to look into? ")
+			if name == 'nt':
+				
+				_ = system('type ' + faf)
+				print("\n")
+			
+			else:
+				print(f"{bcolors.WARNING}")
+				_ = system('cat ' + faf)
+				print("\n")	
+
+		elif f == 'usage':
+			print("Press 'q' to stop")
+			while True:
+
+				if keyboard.is_pressed('q'):
+					print("Quiting...")
+					time.sleep(.43223124)
+					clearScreen()
+					break
+			
+				time.sleep(1)
+				clearScreen()
+				print('CPU: {} %'.format(cpuUsage()))
+				print('RAM: {} MB'.format(int(ramUsage() / 1024 / 1024)))
+
+		elif f == "test":
+			rootTest()
+			break
+				
+		else:
+			print("Command does not exist!")	
+
+def rootTest():
+	clearScreen()
+	print("Bear-Shell Frame Work (Testing) (root)")
+	print("Ver 13021a")
+	cwd = os.getcwd()
+		
+	def helpCom():
+		clearScreen()
+		print("""
+		UserInfo: Tells you current user's information
+
+		python3: Allows you to run .py files
+		clear: Clears screen
+		ls: shows contents of given directory
+		pwd: shows current directory
+		restart: restarts the OS
+		cd: allows you to access a directory
+		cat: allows you to view the contents of a file
+		git: allows you to run basic git commands
+		(Linux Only!) neofetch: shows system info
+		(Linux Only!) apt-get: allows you to run basic apt-get commands like: install, remove, update, and upgrade
+		usage: CPU and RAM usage
+		exit: quits shell
+
+
+		More commands to come with future updates:
+		""")
+	while True:
+		bear = input("~ ( " + str(cwd) + " )" " $ ")
+		bear_split = bear.split()
+		bear_len = len(bear_split)
+
+		if bear_len == 1:
+			if bear == 'restart':
+				while True:
+					cleets = input("Are you sure you want to restart (y/n)? ")
+					if cleets == 'y':
+						reset()
+					else:
+						print("Going back...")
+						time.sleep(1)
+						testingTerm()
+
+			elif bear == 'help':
+				try:
+					helpCom()
+				except ValueError:
+					print("Command Failed...")
+				else:
+					print("Command Executed!")
+
+			elif bear == 'pwd':
+				print(cwd)
+
+			else:
+				print("Not a command!")
+
+		elif bear_len > 1:
+			bearbear = str(bear_split[0])
+			if bearbear == 'ls':
+				direc = str(bear_split[1])
+				print(direc)
+				foofdir = os.path.isdir(direc)
+				if foofdir:
+					if name == 'nt':
+						_ = os.system('dir ' + direc)
+						print(direc)
+					else:
+						_ = system('ls '+ direc)
+						print(direc)
+				else:
+					print("Not a valid directory")
+
+			elif bearbear == 'cd':
+				direc = str(bear_split[1])
+				print(direc)
+				foofa = os.path.isdir(direc)
+				if foofa:
+					os.system('cd ' + direc)
+					cwd = direc
+				else:
+					print("Not a valid directory!")
+
+			else:
+				print("Not a command!")
+
+
+
+		
 
 clearScreen()
