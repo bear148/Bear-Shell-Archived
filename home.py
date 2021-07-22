@@ -20,9 +20,12 @@ def reset():
 	os.system("python3 BearCMDos.py")
 
 def error(message):
-	clearScreen()
+	if name == 'nt':
+		_ = system('cls')
+	else:
+		_ = system('clear')
+		
 	print(f"{bcolors.FAIL}" + message)
-	gameSelect()
 
 def ramUsage():
 	return int(psutil.virtual_memory().total - psutil.virtual_memory().available)
@@ -639,7 +642,7 @@ def homePage():
 		terminalMain()
 
 	elif select == '6':
-		error()
+		calculator()
 
 	elif select == '7':
 		clearDumbScreen()
@@ -833,7 +836,7 @@ def devPage():
 		devTermMain()
 
 	elif select == '6':
-		error()
+		devCalculator()
 
 	elif select == '7':
 		clearScreen()
@@ -2714,8 +2717,89 @@ def rootTest():
 			else:
 				print("Not a command!")
 
+def calculator():
+	clearScreen()
+	print("Type the 'e' command to exit")
+	while True:
+		print("""
+		[+] For addition
+		[-] For subtraction
+		[*] For multiplication
+		[/] For division
+		""")
+		ddd = input("Command: ")
 
+		if ddd == '+':
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.add(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						calculator()
+		elif ddd == '-':
+			pass
+		elif ddd == '*':
+			pass
+		elif ddd == '/':
+			pass
+		elif ddd == 'e':
+			print("Going back to main menu...")
+			time.sleep(1)
+			clearScreen()
+			homePage()
+			break
 
-		
+def devCalculator():
+	clearScreen()
+	print("Type the 'e' command to exit")
+	while True:
+		print("""
+		[+] For addition
+		[-] For subtraction
+		[*] For multiplication
+		[/] For division
+		""")
+		ddd = input("Command: ")
+
+		if ddd == '+':
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.add(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						calculator()
+		elif ddd == '-':
+			pass
+		elif ddd == '*':
+			pass
+		elif ddd == '/':
+			pass
+		elif ddd == 'e':
+			print("Going back to main menu...")
+			time.sleep(1)
+			clearScreen()
+			devPage()
+			break
+
+# ['2', '6']
+#  2 = 0 <- When counting items, it starts at 0, not 1.
+#  6 = 1
+
 
 clearScreen()
