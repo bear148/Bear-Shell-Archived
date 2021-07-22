@@ -1,13 +1,53 @@
-import keyboard
 import time
 import os
 import socket
 from os import system
 import sys
 from os import name
-import msvcrt
-import psutil
 import utils.calculatorBase as cb
+import ctypes
+
+def clearScreen():
+	if name == 'nt':
+		_ = system('cls')
+	else:
+		_ = system('clear')
+clearScreen()
+try:
+	import keyboard
+except ImportError:
+	while True:
+		s = input("The module, 'keyboard' was not found... Install? (y/n) ")
+		if s == 'y':
+			system('pip3 install keyboard')
+			break
+		elif s == 'n':
+			print("Not installing, and quitting the shell...")
+			time.sleep(1)
+			clearScreen()
+			sys.exit()
+		else:
+			print("Not applicable")
+else:
+	print("Module, 'keyboard' found!")
+
+try:
+	import psutil
+except ImportError:
+	while True:
+		s = input("The module, 'psutil' was not found... Install? (y/n) ")
+		if s == 'y':
+			system('pip3 install psutil')
+			break
+		elif s == 'n':
+			print("Not installing, and quitting the shell...")
+			time.sleep(1)
+			clearScreen()
+			sys.exit()
+		else:
+			print("Not applicable")
+else:
+	print("Module, 'psutil' found!")
 
 login_pass = open('data/password.pass')
 login_name = open('data/username.pass')
@@ -33,12 +73,6 @@ def ramUsage():
 
 def cpuUsage():
 	return psutil.cpu_percent(interval=0.5)
-
-def clearScreen():
-	if name == 'nt':
-		_ = system('cls')
-	else:
-		_ = system('clear')
 
 def errorHandle(message, errorcode):
 	mes = message
@@ -68,7 +102,7 @@ def setupPage():
 		f.writelines("1")
 
 	print("""
-	Bear Shell v1.3.1.1
+	Bear Shell v1.3.2.1
 	Bear Shell Registration
 	""")
 
@@ -97,7 +131,7 @@ def loginPage():
 	clearScreen()
 
 	print("""
-	Bear Shell v1.3.1.1
+	Bear Shell v1.3.2.1
 	Bear Shell Login Screen
 	""")
 
@@ -224,7 +258,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.1.1")
+	print("Ver 1.3.2.1")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -556,7 +590,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.1.1
+	Bear Shell v1.3.2.1
 	Home page
 
 	""")
@@ -652,6 +686,10 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.3.2.1:
+	{bcolors.OKGREEN}[+] Added the calculator
+	{bcolors.OKGREEN}[+] Import Verification
+	{bcolors.OKGREEN}[+] Expiremental Command Handling
 {bcolors.OKBLUE}Update 1.3.1.1:
 	{bcolors.OKGREEN}[+] Added 'pip' command
 	{bcolors.OKGREEN}[+] Framework access; see developerGuide.txt for details
@@ -756,7 +794,7 @@ def devPage():
 	l_n = login_name.read()
 	textColor = bcolors.OKGREEN
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.1.1
+	Bear Shell v1.3.2.1
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -846,6 +884,10 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Update 1.3.2.1:
+	{bcolors.OKGREEN}[+] Added the calculator
+	{bcolors.OKGREEN}[+] Import Verification
+	{bcolors.OKGREEN}[+] Expiremental Command Handling
 {bcolors.OKBLUE}Update 1.3.1.1:
 	{bcolors.OKGREEN}[+] Added 'pip' command
 	{bcolors.OKGREEN}[+] Framework access; see developerGuide.txt for details
@@ -1066,7 +1108,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.1.1")
+	print("Ver 1.3.2.1")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -1333,7 +1375,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.1.1")
+	print("Ver 1.3.2.1")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
@@ -1574,9 +1616,25 @@ def rootTerm():
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 
 # Importing Required libraries & Modules
-from tkinter import *
-from tkinter import messagebox
-from tkinter import filedialog
+try:
+	from tkinter import *
+	from tkinter import messagebox
+	from tkinter import filedialog
+except ImportError:
+	while True:
+		s = input("The module, 'tkinter' was not found... Install? (y/n) ")
+		if s == 'y':
+			system('pip3 install tk')
+			break
+		elif s == 'n':
+			print("Not installing, and quitting the shell...")
+			time.sleep(1)
+			clearScreen()
+			sys.exit()
+		else:
+			print("Not applicable")
+else:
+	print("Module, 'tkinter' found!")
 
 import home as H
 # Defining TextEditor Class 
@@ -2660,6 +2718,9 @@ def rootTest():
 		usage: CPU and RAM usage
 		exit: quits shell
 
+		Flags:
+		  -y: only works for the 'restart' command. Usage: 'restart -y'; automatically answers 'y' to prompt
+
 
 		More commands to come with future updates:
 		""")
@@ -2674,10 +2735,12 @@ def rootTest():
 					cleets = input("Are you sure you want to restart (y/n)? ")
 					if cleets == 'y':
 						reset()
+						break
 					else:
 						print("Going back...")
 						time.sleep(1)
 						testingTerm()
+						break
 
 			elif bear == 'help':
 				try:
@@ -2697,27 +2760,29 @@ def rootTest():
 			bearbear = str(bear_split[0])
 			if bearbear == 'ls':
 				direc = str(bear_split[1])
-				print(direc)
 				foofdir = os.path.isdir(direc)
 				if foofdir:
 					if name == 'nt':
 						_ = os.system('dir ' + direc)
-						print(direc)
 					else:
-						_ = system('ls '+ direc)
-						print(direc)
+						_ = system('sudo ls '+ direc)
 				else:
 					print("Not a valid directory")
 
 			elif bearbear == 'cd':
 				direc = str(bear_split[1])
-				print(direc)
 				foofa = os.path.isdir(direc)
 				if foofa:
-					os.system('cd ' + direc)
+					os.system('sudo cd ' + direc)
 					cwd = direc
 				else:
 					print("Not a valid directory!")
+
+			elif bearbear == 'restart':
+				flag = str(bear_split[1])
+				if flag == '-y':
+					reset()
+					break
 
 			else:
 				print("Not a command!")
@@ -2748,19 +2813,67 @@ def calculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
-						calculator()
+						homePage()
+						break
 		elif ddd == '-':
-			pass
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.sub(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						homePage()
+						break
+						
+
 		elif ddd == '*':
-			pass
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.multiply(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						homePage()
+						break
+
 		elif ddd == '/':
-			pass
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.divide(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						homePage()
+						break
 		elif ddd == 'e':
 			print("Going back to main menu...")
 			time.sleep(1)
 			clearScreen()
 			homePage()
 			break
+		else:
+			print("That command wasn't found!")
 
 def devCalculator():
 	clearScreen()
@@ -2788,19 +2901,67 @@ def devCalculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
-						calculator()
+						devPage()
+						break
 		elif ddd == '-':
-			pass
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.sub(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						devPage()
+						break
+						
+
 		elif ddd == '*':
-			pass
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.multiply(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						devPage()
+						break
+
 		elif ddd == '/':
-			pass
+			clearScreen()
+			while True:
+				addition = input("Enter 2 nums: ")
+				add_split = addition.split()
+				if len(add_split) > 1:
+					add1 = add_split[0]
+					add2 = add_split[1]
+					print(cb.divide(add1, add2))
+				else:
+					first = add_split[0]
+					if first == 'e':
+						print("Going back to menu...")
+						time.sleep(1)
+						devPage()
+						break
 		elif ddd == 'e':
 			print("Going back to main menu...")
 			time.sleep(1)
 			clearScreen()
 			devPage()
 			break
+		else:
+			print("That command wasn't found!")
 
 # | Ignore |
 #
@@ -2813,5 +2974,5 @@ clearScreen()
 
 #  To-Do
 # --------------------
-# [ ] Finish Calculator
+# [X] Finish Calculator
 # [ ] Add A web-browser

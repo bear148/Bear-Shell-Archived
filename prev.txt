@@ -1,3 +1,13 @@
+Ver 1.3.1.1:
+ - pip Command
+ - Framework Access
+ - Weird bug fix
+
+Ver 1.3.0.1:
+ - Fixed Devpage Bug
+ - Fixed restarting
+ - Small bug fixes
+
 Ver 1.3.0:
  - git Command
 

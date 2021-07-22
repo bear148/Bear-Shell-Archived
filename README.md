@@ -34,11 +34,13 @@ By flavors I mean making new flavors of Bear-Shell, like Ubuntu is a flavor of D
 ## Newest Updates
 <b>Disclaimer!</b> Patches will not be shown here! This area is for big releases only! The fourth digit is for patches, and those are pretty much always bug fixes, so they wont be put here.
 <br>
-In the most recent update, version 1.3.1.1, I added the pip command, framework access, and fixed some weird bugs.
+In the most recent update, version 1.3.2.1, I added the calculator, import verification, and better command handling for the root testing. Root testing is accessable by typing in the password, 'testing' and then once in the framework, type 'test' then you can test the one line commands, that are being tested. (e.g. 'ls /home' 'cd /home')
 
-- pip: allows the user to install python packages from the terminal
+- calculator: allows you to add, subtract, divide, and multiply two nums.
+- import verification: checks if the user has the correct libraries installed to run Bear-Shell
+- better command handling: allows for two word, and one word commands to work in the root testing.
 
-I was looking forwards to this feature since I really needed it for when I'm missing a specific package, and I need to install it quickly!
+I wanted to add this feature because I thought about Bear-Shell's whole point, which is to be fast, efficient, and easy. Which before this update, you had to manually install some of the libraries/packages. Which isn't very easy, and efficient, so I made it so that all the user has to do is start the shell. (e.g. via ```make```)
 
 ## Newest Patches
 <b>The newest patch is v1.3.0.1</b>
@@ -46,6 +48,8 @@ I was looking forwards to this feature since I really needed it for when I'm mis
 <p>The newest patch included mostly bug fixes.</p>
 
 ## Older Updates
+- Ver 1.3.1.1
+- Ver 1.3.0.1
 - Ver 1.3.0
 - Ver 1.2.9
 - Ver 1.2.8
