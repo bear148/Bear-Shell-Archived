@@ -14,6 +14,7 @@ login_name = open('data/username.pass')
 l_p = login_pass.read()
 l_n = login_name.read()
 
+# Utilities
 def reset():
 	print("Restarting...")
 	time.sleep(1)
@@ -33,15 +34,6 @@ def ramUsage():
 def cpuUsage():
 	return psutil.cpu_percent(interval=0.5)
 
-class ErrorCodes:
-	Err1 = "Syntax Error (Error Num: 0x0001)"
-	Err2 = "Char not int (Error Num: 0x0002)"
-	Err3 = "Not on list (Error Num: 0x0003)" 
-	Err4 = "Illegal Operation (Error Num: 0x0004)"
-	Err5 = "Not an accessable command (Error Num: 0x0005)"
-	Err6 = "Not a valid directory (Error Num: 0x0006"
-	ErrCode1 = "(Error Num: 0x00A1)"
-
 def clearScreen():
 	if name == 'nt':
 		_ = system('cls')
@@ -52,8 +44,19 @@ def errorHandle(message, errorcode):
 	mes = message
 	err = errorcode
 	print(f"{bcolors.FAIL}" + mes + " Error code: " + err)
-	
 
+class ErrorCodes:
+	Err1 = "Syntax Error (Error Num: 0x0001)"
+	Err2 = "Char not int (Error Num: 0x0002)"
+	Err3 = "Not on list (Error Num: 0x0003)" 
+	Err4 = "Illegal Operation (Error Num: 0x0004)"
+	Err5 = "Not an accessable command (Error Num: 0x0005)"
+	Err6 = "Not a valid directory (Error Num: 0x0006"
+	ErrCode1 = "(Error Num: 0x00A1)"
+#
+# Setup Page
+#
+#
 def setupPage():
 	import os
 	import time
@@ -82,7 +85,9 @@ def setupPage():
 	print("Opening Login...")
 	time.sleep(0.5)
 	loginPage()
-
+#
+# Login Page
+#
 def loginPage():
 	import os
 	import time
@@ -2797,9 +2802,16 @@ def devCalculator():
 			devPage()
 			break
 
+# | Ignore |
+#
 # ['2', '6']
 #  2 = 0 <- When counting items, it starts at 0, not 1.
 #  6 = 1
 
-
+# When this file is ran, clear the screen
 clearScreen()
+
+#  To-Do
+# --------------------
+# [ ] Finish Calculator
+# [ ] Add A web-browser
