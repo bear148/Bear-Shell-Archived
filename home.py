@@ -1,11 +1,216 @@
+import sys
+from sys import *
+from os import name, system
+
+
+def clearScreen():
+	if name == 'nt':
+		_ = system('cls')
+	else:
+		_ = system('clear')
+
+def checkImports():
+	try:
+		import time
+	except ImportError:
+		while True:
+			s = input("The module, 'time' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install time')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'time' found!")
+		time.sleep(1)
+
+	try:
+		import os
+	except ImportError:
+		while True:
+			s = input("The module, 'os' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install os')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'os' found!")
+		time.sleep(1)
+
+	try:
+		import socket
+	except ImportError:
+		while True:
+			s = input("The module, 'socket' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install socket')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'socket' found!")
+		time.sleep(1)
+
+	try:
+		import sys
+	except ImportError:
+		while True:
+			s = input("The module, 'sys' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install sys')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'sys' found!")
+		time.sleep(1)
+
+	try:
+		import utils.calculatorBase as cb
+	except ImportError:
+		while True:
+			s = input("The module, 'calculatorBase' was not found... This could be caused by an install error. Please restart the program and install a new Bear-Shell version. (hit y) ")
+			if s == 'y':
+				print("Quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'calculatorBase' found!")
+		time.sleep(1)
+
+	try:
+		import ctypes
+	except ImportError:
+		while True:
+			s = input("The module, 'ctypes' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install ctypes')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'ctypes' found!")
+		time.sleep(1)
+
+	try:
+		import keyboard
+	except ImportError:
+		while True:
+			s = input("The module, 'keyboard' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install keyboard')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'keyboard' found!")
+		time.sleep(1)
+
+	try:
+		import psutil
+	except ImportError:
+		while True:
+			s = input("The module, 'psutil' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install psutil')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'psutil' found!")
+		time.sleep(1)
+
+	try:
+		import tkinter
+	except ImportError:
+		while True:
+			s = input("The module, 'tkinter' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install tk')
+				break
+			elif s == 'n':
+				print("Not installing, and quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'tkinter' found!")
+		time.sleep(1)
+
+	try:
+		import utils.verifyImports
+	except ImportError:
+		while True:
+			s = input("The module, 'calculatorBase' was not found... This could be caused by an install error. Please restart the program and install a new Bear-Shell version. (hit y) ")
+			if s == 'y':
+				print("Quitting the shell...")
+				time.sleep(1)
+				clearScreen()
+				sys.exit()
+			else:
+				print("Not applicable!")
+
+	else:
+		print("Module, 'verifyImports' found!")
+		time.sleep(1)
+
+import psutil
+import tkinter
 import time
 import os
-import socket
-from os import system
 import sys
-from os import name
-import utils.calculatorBase as cb
 import ctypes
+import keyboard
+import utils.calculatorBase as cb
+import socket
+
+def spinning_cursor():
+	while True:
+		for cursor in '|/-\\':
+			yield cursor
+
+spinner = spinning_cursor()
 
 def clearScreen():
 	if name == 'nt':
@@ -13,46 +218,19 @@ def clearScreen():
 	else:
 		_ = system('clear')
 clearScreen()
-try:
-	import keyboard
-except ImportError:
-	while True:
-		s = input("The module, 'keyboard' was not found... Install? (y/n) ")
-		if s == 'y':
-			system('pip3 install keyboard')
-			break
-		elif s == 'n':
-			print("Not installing, and quitting the shell...")
-			time.sleep(1)
-			clearScreen()
-			sys.exit()
-		else:
-			print("Not applicable")
-else:
-	print("Module, 'keyboard' found!")
-
-try:
-	import psutil
-except ImportError:
-	while True:
-		s = input("The module, 'psutil' was not found... Install? (y/n) ")
-		if s == 'y':
-			system('pip3 install psutil')
-			break
-		elif s == 'n':
-			print("Not installing, and quitting the shell...")
-			time.sleep(1)
-			clearScreen()
-			sys.exit()
-		else:
-			print("Not applicable")
-else:
-	print("Module, 'psutil' found!")
 
 login_pass = open('data/password.pass')
 login_name = open('data/username.pass')
 l_p = login_pass.read()
 l_n = login_name.read()
+data_info = open('data/info.data')
+data = data_info.read()
+
+def slowPrint(s):
+	f = str(s)
+	for l in f:
+		print(l, end="")
+		time.sleep(.1)
 
 # Utilities
 def reset():
@@ -101,6 +279,15 @@ def setupPage():
 	with open('data/info.data', 'w') as f:
 		f.writelines("1")
 
+	print("Starting...")
+	print("All Libraries found!")
+	for _ in range(30):
+		sys.stdout.write("Finishing: " + next(spinner))
+		sys.stdout.flush()
+		time.sleep(0.1)
+		sys.stdout.write("Finishing: " + '\b')
+	clearScreen()
+
 	print("""
 	Bear Shell v1.3.2.1
 	Bear Shell Registration
@@ -128,6 +315,15 @@ def loginPage():
 	import home as H
 	from os import system
 
+	clearScreen()
+
+	print("Starting...")
+	print("All Libraries found!")
+	for _ in range(30):
+		sys.stdout.write(next(spinner))
+		sys.stdout.flush()
+		time.sleep(0.1)
+		sys.stdout.write('\b')
 	clearScreen()
 
 	print("""
@@ -1616,26 +1812,9 @@ def rootTerm():
 			print("The command, " "" + bruhVariable + "" " wasn't found!")
 
 # Importing Required libraries & Modules
-try:
-	from tkinter import *
-	from tkinter import messagebox
-	from tkinter import filedialog
-except ImportError:
-	while True:
-		s = input("The module, 'tkinter' was not found... Install? (y/n) ")
-		if s == 'y':
-			system('pip3 install tk')
-			break
-		elif s == 'n':
-			print("Not installing, and quitting the shell...")
-			time.sleep(1)
-			clearScreen()
-			sys.exit()
-		else:
-			print("Not applicable")
-else:
-	print("Module, 'tkinter' found!")
-
+from tkinter import *
+from tkinter import messagebox
+from tkinter import filedialog
 import home as H
 # Defining TextEditor Class 
 def editorMain():
@@ -2773,8 +2952,12 @@ def rootTest():
 				direc = str(bear_split[1])
 				foofa = os.path.isdir(direc)
 				if foofa:
-					os.system('sudo cd ' + direc)
-					cwd = direc
+					if name == 'nt':
+						os.system('cd ' + direc)
+						cwd = direc
+					else:
+						os.system('sudo cd ' + direc)
+						cwd = direc
 				else:
 					print("Not a valid directory!")
 
@@ -2813,6 +2996,7 @@ def calculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						homePage()
 						break
 		elif ddd == '-':
@@ -2829,6 +3013,7 @@ def calculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						homePage()
 						break
 						
@@ -2847,6 +3032,7 @@ def calculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						homePage()
 						break
 
@@ -2864,6 +3050,7 @@ def calculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						homePage()
 						break
 		elif ddd == 'e':
@@ -2901,6 +3088,7 @@ def devCalculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						devPage()
 						break
 		elif ddd == '-':
@@ -2917,6 +3105,7 @@ def devCalculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						devPage()
 						break
 						
@@ -2935,6 +3124,7 @@ def devCalculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						devPage()
 						break
 
@@ -2952,6 +3142,7 @@ def devCalculator():
 					if first == 'e':
 						print("Going back to menu...")
 						time.sleep(1)
+						clearScreen()
 						devPage()
 						break
 		elif ddd == 'e':
@@ -2971,7 +3162,7 @@ def devCalculator():
 
 # When this file is ran, clear the screen
 clearScreen()
-
+checkImports()
 #  To-Do
 # --------------------
 # [X] Finish Calculator
