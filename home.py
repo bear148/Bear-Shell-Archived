@@ -2,12 +2,27 @@ import sys
 from sys import *
 from os import name, system
 
+bear_shell = "1.3.2.2"
 
 def clearScreen():
 	if name == 'nt':
 		_ = system('cls')
 	else:
 		_ = system('clear')
+
+def writeVersionNum(ver):
+	with open('data/version.data', 'w') as f:
+		f.writelines(ver)
+
+def startupVer(vers):
+	if bear_shell == vers:
+		print("Shell up to date...")
+	else:
+		print("Your copy of Bear-Shell is not up-to-date!")
+		print("Please update your shell!")
+		print("")
+		print("This will close in 3 seconds...")
+		time.sleep(3)
 
 def checkImports():
 	try:
@@ -27,7 +42,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'time' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import os
@@ -46,7 +61,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'os' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import socket
@@ -65,7 +80,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'socket' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import sys
@@ -84,7 +99,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'sys' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import utils.calculatorBase as cb
@@ -100,7 +115,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'calculatorBase' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import ctypes
@@ -119,7 +134,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'ctypes' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import keyboard
@@ -138,7 +153,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'keyboard' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import psutil
@@ -157,7 +172,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'psutil' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import tkinter
@@ -176,7 +191,7 @@ def checkImports():
 				print("Not applicable")
 	else:
 		print("Module, 'tkinter' found!")
-		time.sleep(1)
+		time.sleep(0.5)
 
 	try:
 		import utils.verifyImports
@@ -193,16 +208,17 @@ def checkImports():
 
 	else:
 		print("Module, 'verifyImports' found!")
-		time.sleep(1)
+		time.sleep(0.5)
+		startupVer("1.3.2.2")
 
+import keyboard
 import psutil
 import tkinter
-import time
-import os
-import sys
-import ctypes
-import keyboard
 import utils.calculatorBase as cb
+import ctypes
+import sys
+import os
+import time
 import socket
 
 def spinning_cursor():
@@ -265,6 +281,10 @@ class ErrorCodes:
 	Err5 = "Not an accessable command (Error Num: 0x0005)"
 	Err6 = "Not a valid directory (Error Num: 0x0006"
 	ErrCode1 = "(Error Num: 0x00A1)"
+
+class comFlags:
+	yes = '-y'
+
 #
 # Setup Page
 #
@@ -289,7 +309,7 @@ def setupPage():
 	clearScreen()
 
 	print("""
-	Bear Shell v1.3.2.1
+	Bear Shell v1.3.2.2
 	Bear Shell Registration
 	""")
 
@@ -327,7 +347,7 @@ def loginPage():
 	clearScreen()
 
 	print("""
-	Bear Shell v1.3.2.1
+	Bear Shell v1.3.2.2
 	Bear Shell Login Screen
 	""")
 
@@ -454,7 +474,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.2.1")
+	print("Ver 1.3.2.2")
 	def helpCom():
 		clearScreen()
 		print("""
@@ -786,7 +806,7 @@ def homePage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.2.1
+	Bear Shell v1.3.2.2
 	Home page
 
 	""")
@@ -803,6 +823,7 @@ def homePage():
 	[8] To restart the system
 	[9] To Close Shell Safely
 	[10] To play games
+	[11] To view system info
 	""")
 
 	select = input(f"[?]:{incol} ")
@@ -882,6 +903,10 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Patch 1.3.2.2:
+	{bcolors.OKGREEN}[+] Made commands able to type in uppercase and lowercase
+	{bcolors.OKGREEN}[+] Version Checking
+	{bcolors.OKGREEN}[+] Sys Info
 {bcolors.OKBLUE}Update 1.3.2.1:
 	{bcolors.OKGREEN}[+] Added the calculator
 	{bcolors.OKGREEN}[+] Import Verification
@@ -979,6 +1004,10 @@ def homePage():
 		clearDumbScreen()
 		gameSelect()
 
+	elif select == '11':
+		clearScreen()
+		sysInfo()
+
 	else:
 		error()
 
@@ -990,7 +1019,7 @@ def devPage():
 	l_n = login_name.read()
 	textColor = bcolors.OKGREEN
 	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.2.1
+	Bear Shell v1.3.2.2
 	Home page
 	(DEVELOPER MODE: ACTIVATED)
 
@@ -1008,6 +1037,7 @@ def devPage():
 	[8] To restart the system
 	[9] To Close Shell Safely
 	[10] To games
+	[11] To Sys Info
 	""")
 
 	select = input(f"[?]:{textColor} ")
@@ -1080,6 +1110,10 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Patch 1.3.2.2:
+	{bcolors.OKGREEN}[+] Made commands able to type in uppercase and lowercase
+	{bcolors.OKGREEN}[+] Version Checking
+	{bcolors.OKGREEN}[+] Sys Info
 {bcolors.OKBLUE}Update 1.3.2.1:
 	{bcolors.OKGREEN}[+] Added the calculator
 	{bcolors.OKGREEN}[+] Import Verification
@@ -1175,6 +1209,10 @@ def devPage():
 	elif select == '10':
 		clearScreen()
 		gameDevSelect()
+
+	elif select == '11':
+		clearScreen()
+		devSysInfo()
 	
 	else:
 		clearScreen()
@@ -1304,7 +1342,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.2.1")
+	print("Ver 1.3.2.2")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -1571,7 +1609,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.2.1")
+	print("Ver 1.3.2.2")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
@@ -2909,7 +2947,8 @@ def rootTest():
 		bear_len = len(bear_split)
 
 		if bear_len == 1:
-			if bear == 'restart':
+			com = bear.lower()
+			if com == 'restart':
 				while True:
 					cleets = input("Are you sure you want to restart (y/n)? ")
 					if cleets == 'y':
@@ -2921,7 +2960,7 @@ def rootTest():
 						testingTerm()
 						break
 
-			elif bear == 'help':
+			elif com == 'help':
 				try:
 					helpCom()
 				except ValueError:
@@ -2929,7 +2968,7 @@ def rootTest():
 				else:
 					print("Command Executed!")
 
-			elif bear == 'pwd':
+			elif com == 'pwd':
 				print(cwd)
 
 			else:
@@ -2937,7 +2976,8 @@ def rootTest():
 
 		elif bear_len > 1:
 			bearbear = str(bear_split[0])
-			if bearbear == 'ls':
+			com1 = bearbear.lower()
+			if com1 == 'ls':
 				direc = str(bear_split[1])
 				foofdir = os.path.isdir(direc)
 				if foofdir:
@@ -2948,7 +2988,7 @@ def rootTest():
 				else:
 					print("Not a valid directory")
 
-			elif bearbear == 'cd':
+			elif com1 == 'cd':
 				direc = str(bear_split[1])
 				foofa = os.path.isdir(direc)
 				if foofa:
@@ -2961,7 +3001,7 @@ def rootTest():
 				else:
 					print("Not a valid directory!")
 
-			elif bearbear == 'restart':
+			elif com1 == 'restart':
 				flag = str(bear_split[1])
 				if flag == '-y':
 					reset()
@@ -3154,6 +3194,66 @@ def devCalculator():
 		else:
 			print("That command wasn't found!")
 
+def sysInfo():
+
+	varss = open('data/version.data')
+	var = varss.read()
+	if var == '1.3.2.2':
+		upDate = "Up-To-Date!"
+	else:
+		upDate = "Out-Of-Date!"
+
+	if name == 'nt':
+		os = "Windows"
+	else:
+		os = "Linux"
+
+	while True:
+		print(f"""
+Current Shell: Version {var}
+Current OS: {os}
+Up-To-Date: {upDate}
+Python Version: {version}
+----------------------------
+Bear-Shell; Created by Michael S.
+		""")
+		a = input("com: ")
+		b = a.lower()
+		if b == 'e':
+			print("Exiting...")
+			clearScreen()
+			homePage()
+
+def devSysInfo():
+	
+	varss = open('data/version.data')
+	var = varss.read()
+	if var == '1.3.2.2':
+		upDate = "Up-To-Date!"
+	else:
+		upDate = "Out-Of-Date!"
+
+	if name == 'nt':
+		os = "Windows"
+	else:
+		os = "Linux"
+
+	while True:
+		print(f"""
+Current Shell: Version {var}
+Current OS: {os}
+Up-To-Date: {upDate}
+Python Version: {version}
+----------------------------
+Bear-Shell; Created by Michael S.
+		""")
+		a = input("com: ")
+		b = a.lower()
+		if b == 'e':
+			print("Exiting...")
+			clearScreen()
+			devPage()
+
 # | Ignore |
 #
 # ['2', '6']
@@ -3163,6 +3263,7 @@ def devCalculator():
 # When this file is ran, clear the screen
 clearScreen()
 checkImports()
+writeVersionNum(bear_shell)
 #  To-Do
 # --------------------
 # [X] Finish Calculator
