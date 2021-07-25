@@ -2971,6 +2971,31 @@ def rootTest():
 			elif com == 'pwd':
 				print(cwd)
 
+			elif com == 'exit':
+				while True:
+					ads = input("Would you like to go back to admin page or user page? (type 'admin' or 'user') ")
+					adz = ads.lower()
+					if adz == 'admin':
+						while True:
+							log = input("Enter Password To " + "Admin" + " To Login: ")
+							if log == '559907':
+								print("Opening Dev Page...")
+								time.sleep(0.5)
+								clearScreen()
+								devPage()
+								break
+					if adz == 'user':
+						while True:
+							log = input("Enter Password To " + l_n + " To Login: ")
+							if log == l_p:
+								print("Opening Home Page...")
+								time.sleep(0.5)
+								clearScreen()
+								homePage()
+								break
+					else:
+						print("That is not an option!")
+
 			else:
 				print("Not a command!")
 
@@ -3006,6 +3031,28 @@ def rootTest():
 				if flag == '-y':
 					reset()
 					break
+
+			elif com1 == 'exit':
+				flag2 = str(bear_split[1])
+				if flag2 == '-admin':
+					while True:
+						log = input("Enter Password To " + "Admin" + " To Login: ")
+						if log == '559907':
+							print("Opening Dev Page...")
+							time.sleep(0.5)
+							clearScreen()
+							devPage()
+							break
+						else:
+							print("Incorrect!")
+
+			elif bear_len > 2:
+				bearv1 = str(bear_split[0])
+				bearv2 = str(bear_split[1])
+				bearv3 = str(bear_split[2])
+				print(bearv1)
+				print(bearv2)
+				print(bearv3)
 
 			else:
 				print("Not a command!")
