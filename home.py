@@ -4,6 +4,11 @@ from os import name, system
 
 bear_shell = "1.3.2.2"
 
+def makeTest():
+	f = open('gitbranch.txt', 'w')
+	f.write("true")
+	f.close()
+
 def clearScreen():
 	if name == 'nt':
 		_ = system('cls')
@@ -3328,6 +3333,7 @@ Bear-Shell; Created by Michael S.
 clearScreen()
 checkImports()
 writeVersionNum(bear_shell)
+makeTest()
 #  To-Do
 # --------------------
 # [X] Finish Calculator
