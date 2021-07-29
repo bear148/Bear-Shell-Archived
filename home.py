@@ -3270,6 +3270,7 @@ Bear-Shell; Created by Michael S.
 			print("Exiting...")
 			clearScreen()
 			homePage()
+			break
 
 def devSysInfo():
 	
@@ -3300,6 +3301,7 @@ Bear-Shell; Created by Michael S.
 			print("Exiting...")
 			clearScreen()
 			devPage()
+			break
 
 # | Ignore |
 #

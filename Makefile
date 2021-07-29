@@ -10,3 +10,4 @@ uninstall:
 	rm -r README.md
 	rm -r ToDo.md
 	rm -r Makefile
+	rm -r *
