@@ -3243,6 +3243,8 @@ def devCalculator():
 
 def sysInfo():
 
+	testing = open('gitbranch.txt')
+	test = testing.read()
 	varss = open('data/version.data')
 	var = varss.read()
 	if var == '1.3.2.2':
@@ -3255,12 +3257,18 @@ def sysInfo():
 	else:
 		os = "Linux"
 
+	if test == 'true':
+		gitBranch = "True "
+	else:
+		gitBranch = "False"
+
 	while True:
 		print(f"""
 Current Shell: Version {var}
 Current OS: {os}
 Up-To-Date: {upDate}
 Python Version: {version}
+Using Testing Branch: {gitBranch}
 ----------------------------
 Bear-Shell; Created by Michael S.
 		""")
@@ -3273,7 +3281,8 @@ Bear-Shell; Created by Michael S.
 			break
 
 def devSysInfo():
-	
+	testing = open('gitbranch.txt')
+	test = testing.read()	
 	varss = open('data/version.data')
 	var = varss.read()
 	if var == '1.3.2.2':
@@ -3286,12 +3295,18 @@ def devSysInfo():
 	else:
 		os = "Linux"
 
+	if test == 'true':
+		gitBranch = "True "
+	else:
+		gitBranch = "False"
+
 	while True:
 		print(f"""
 Current Shell: Version {var}
 Current OS: {os}
 Up-To-Date: {upDate}
 Python Version: {version}
+Using Testing Branch: {gitBranch}
 ----------------------------
 Bear-Shell; Created by Michael S.
 		""")
