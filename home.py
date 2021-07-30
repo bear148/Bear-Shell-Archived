@@ -1114,7 +1114,7 @@ def homePage():
 	{bcolors.OKGREEN}[+] Basic Files Added
 		{bcolors.FAIL}[-] Lots Of Bugs
 {bcolors.OKBLUE}--------------------------------------------
-{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Cmd-Line-OS
+{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Bear-Shell
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}Legend:
@@ -1404,7 +1404,7 @@ def devPage():
 	{bcolors.OKGREEN}[+] Basic Files Added
 		{bcolors.FAIL}[-] Lots Of Bugs
 {bcolors.OKBLUE}--------------------------------------------
-{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Cmd-Line-OS
+{bcolors.OKBLUE}Full github repository: {bcolors.OKGREEN}https://github.com/BizzyPythonBear/Bear-Shell
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}--------------------------------------------
 {bcolors.OKBLUE}Legend:
