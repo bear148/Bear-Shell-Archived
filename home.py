@@ -2,7 +2,16 @@ import sys
 from sys import *
 from os import name, system
 
-bear_shell = "1.3.2.2"
+missingImport = 0
+bear_shell = "1.3.2.3"
+bear_shell_testing = ""
+testing = open('gitbranch.txt')
+test = testing.read()
+
+if test == 'true':
+	bear_shell_testing = "(testing)"
+else:
+	bear_shell_testing = ""
 
 def makeTest():
 	f = open('gitbranch.txt', 'w')
@@ -30,6 +39,26 @@ def startupVer(vers):
 		time.sleep(3)
 
 def checkImports():
+	import sys, time
+	global missingImport
+	try:
+		import PyGitHub
+	except ImportError:
+		missingImport += 1
+		while True:
+			s = input("The module, 'PyGitHub' was not found... Install? (y/n) ")
+			if s == 'y':
+				system('pip3 install PyGitHub')
+				break
+			elif s == 'n':
+				print("Continuing startup...")
+				break
+			else:
+				print("Not applicable")
+	else:
+		print("Module, 'PyGitHub' found!")
+		time.sleep(0.5)
+
 	try:
 		import time
 	except ImportError:
@@ -214,7 +243,7 @@ def checkImports():
 	else:
 		print("Module, 'verifyImports' found!")
 		time.sleep(0.5)
-		startupVer("1.3.2.2")
+		startupVer("1.3.2.3")
 
 import keyboard
 import psutil
@@ -301,22 +330,35 @@ def setupPage():
 
 	clearScreen()
 
+	testing = open('gitbranch.txt')
+	test = testing.read()
+
+
 	with open('data/info.data', 'w') as f:
 		f.writelines("1")
 
 	print("Starting...")
-	print("All Libraries found!")
+	if missingImport > 0:
+		print("Missing " + str(missingImport) + " libraries")
+	else:
+		print("All Libraries found!")
 	for _ in range(30):
-		sys.stdout.write("Finishing: " + next(spinner))
+		sys.stdout.write(next(spinner))
 		sys.stdout.flush()
 		time.sleep(0.1)
-		sys.stdout.write("Finishing: " + '\b')
+		sys.stdout.write('\b')
 	clearScreen()
 
-	print("""
-	Bear Shell v1.3.2.2
+	if test == 'true':
+		print("""
+	Bear Shell v1.3.2.3 (testing)
 	Bear Shell Registration
-	""")
+		""")
+	else:
+		print("""
+	Bear Shell v1.3.2.3 (stable)
+	Bear Shell Registration
+		""")
 
 	usrname = input("Please enter your new username: ")
 	pas = input("Please enter your new password: ")
@@ -343,7 +385,10 @@ def loginPage():
 	clearScreen()
 
 	print("Starting...")
-	print("All Libraries found!")
+	if missingImport > 0:
+		print("Missing " + str(missingImport) + " libraries")
+	else:
+		print("All Libraries found!")
 	for _ in range(30):
 		sys.stdout.write(next(spinner))
 		sys.stdout.flush()
@@ -351,10 +396,19 @@ def loginPage():
 		sys.stdout.write('\b')
 	clearScreen()
 
-	print("""
-	Bear Shell v1.3.2.2
-	Bear Shell Login Screen
-	""")
+	testing = open('gitbranch.txt')
+	test = testing.read()
+
+	if test == 'true':
+		print("""
+	Bear Shell v1.3.2.3 (testing)
+	Bear Shell Login
+		""")
+	else:
+		print("""
+	Bear Shell v1.3.2.3 (stable)
+	Bear Shell Login
+		""")
 
 	while True:
 		log = input("Enter Password To " + l_n + " To Login: ")
@@ -479,7 +533,7 @@ def terminalMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.2.2")
+	print("Ver 1.3.2.3 " + bear_shell_testing)
 	def helpCom():
 		clearScreen()
 		print("""
@@ -810,11 +864,20 @@ def homePage():
 	login_name = open('data/username.pass')
 	l_p = login_pass.read()
 	l_n = login_name.read()
-	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.2.2
+	testing = open('gitbranch.txt')
+	test = testing.read()
+	if test == 'true':
+		print(f"""{bcolors.OKBLUE}
+	Bear Shell v1.3.2.3 (testing)
 	Home page
 
-	""")
+		""")
+	else:
+		print(f"""{bcolors.OKBLUE}
+	Bear Shell v1.3.2.3 (stable)
+	Home page
+
+		""")
 	print(f"{bcolors.OKBLUE}Welcome, " + l_n)
 	print(f"{bcolors.OKBLUE}The Date Is: " + time.strftime("%m/%d/%y"))
 	print(f"""{bcolors.OKBLUE}
@@ -829,6 +892,7 @@ def homePage():
 	[9] To Close Shell Safely
 	[10] To play games
 	[11] To view system info
+	[12] Check for Updates
 	""")
 
 	select = input(f"[?]:{incol} ")
@@ -847,6 +911,12 @@ def homePage():
 
 	elif select == '4':
 		clearScreen()
+		testing = open('gitbranch.txt')
+		test = testing.read()
+		if test == 'true':
+			gitf = "Testing"
+		else:
+			gitf = "Main"
 		while True:
 			b_login = input(str("Please Enter The Password To " + l_n + " To Open BioS: "))
 			if b_login == l_p:
@@ -856,6 +926,7 @@ def homePage():
 				host_ip = socket.gethostbyname(host_name)
 				print("[1] USER NAME: " + l_n)
 				print("[2] PASSWORD: " + l_p)
+				print("[3] Current Repo Branch: " + gitf)
 				print("Hostname:", host_name)
 				print("LOCAL IPS: " + host_ip)
 				edit_b = input("Enter [?] to change setting: ")
@@ -877,6 +948,74 @@ def homePage():
 					input("Press Enter To Restart: ")
 					homePage()
 					os.system('exit')
+
+				if edit_b == '3':
+					clearScreen()
+					while True:
+						if test == 'true':
+							ax = input("Would you like to change to the main (stable) repo? ")
+							a2 = ax.lower()
+							if a2 == 'y':
+								while True:
+									asa = input("Are you sure you want to change back to the main branch? ")
+									das = asa.lower()
+									if das == 'y':
+										#print("Now downgrading to the (stable) main branch...")
+										#time.sleep(1)
+										#system("cd ../")
+										#system("rm -rf bear-shell")
+										#system("git clone https://github.com/BizzyPythonBear/Bear-Shell/")
+										#system("cd bear-shell")
+										#system("python3 BearCMDos.py")
+										#
+										print("This command is a work in progress.")
+
+									elif das == 'n':
+										print("Returning to menu... ")
+										time.sleep(0.5)
+										clearScreen()
+										homePage()
+										break
+										break
+									else:
+										print("Not an option.")
+							elif a2 == 'n':
+								print("Not changing to (main (stable)) branch...")
+								print("Returning to menu...")
+								time.sleep(0.5)
+								clearScreen()
+								homePage()
+								break
+							else:
+								print("Not an option!")
+
+						else:
+							ax = input("Would you like to change to the testing (unstable) repo? ")
+							a2 = ax.lower()
+							if a2 == 'y':
+								while True:
+									asa = input("Are you sure you want to change to the testing branch? ")
+									das = asa.lower()
+									if das == 'y':
+										pass
+									elif das == 'n':
+										print("Returning to menu... ")
+										time.sleep(0.5)
+										clearScreen()
+										homePage()
+										break
+										break
+									else:
+										print("Not an option.")
+							elif a2 == 'n':
+								print("Not changing to (testing (unstable)) branch...")
+								print("Returning to menu...")
+								time.sleep(0.5)
+								clearScreen()
+								homePage()
+								break
+							else:
+								print("Not an option!")
 
 				if edit_b == 'E':
 					clearScreen()
@@ -908,6 +1047,14 @@ def homePage():
 	elif select == '7':
 		clearDumbScreen()
 		print(f"""
+{bcolors.OKBLUE}Patch 1.3.2.3:
+	{bcolors.OKGREEN}[+] Added Frame to start Github Branch Changing in BIOS
+	{bcolors.OKGREEN}[+] Better Import verifier
+	{bcolors.OKGREEN}[+] Missing Import Counter
+	{bcolors.OKGREEN}[+] Github Branch Checker
+	{bcolors.OKGREEN}[+] Added Frame to start Updater
+		{bcolors.FAIL}[-] This Frame is causing lots of bugs! (BEWARE!)
+	{bcolors.OKGREEN}[+] Fixed bug where bios would bring admins back to regular user menu
 {bcolors.OKBLUE}Patch 1.3.2.2:
 	{bcolors.OKGREEN}[+] Made commands able to type in uppercase and lowercase
 	{bcolors.OKGREEN}[+] Version Checking
@@ -1013,6 +1160,11 @@ def homePage():
 		clearScreen()
 		sysInfo()
 
+	elif select == '12':
+		clearScreen()
+		print("This feature has not been added yet, as we are experiencing issues with packages that will be required to do this.")
+		homePage()
+
 	else:
 		error()
 
@@ -1023,12 +1175,18 @@ def devPage():
 	l_p = login_pass.read()
 	l_n = login_name.read()
 	textColor = bcolors.OKGREEN
-	print(f"""{bcolors.OKBLUE}
-	Bear Shell v1.3.2.2
-	Home page
-	(DEVELOPER MODE: ACTIVATED)
+	if test == 'true':
+		print(f"""{bcolors.OKBLUE}
+	Bear Shell v1.3.2.3 (testing)
+	Home page (DEVELOPER MODE: True)
 
-	""")
+		""")
+	else:
+		print(f"""{bcolors.OKBLUE}
+	Bear Shell v1.3.2.3 (stable)
+	Home page (DEVELOPER MODE: True)
+
+		""")
 	print(f"{bcolors.OKBLUE}Welcome, Admin")
 	print(f"{bcolors.OKBLUE}The Date Is: " + time.strftime("%m/%d/%y"))
 	print(f"""{bcolors.OKBLUE}
@@ -1043,6 +1201,7 @@ def devPage():
 	[9] To Close Shell Safely
 	[10] To games
 	[11] To Sys Info
+	[12] Check for Updates
 	""")
 
 	select = input(f"[?]:{textColor} ")
@@ -1060,6 +1219,10 @@ def devPage():
 
 	elif select == '4':
 		clearScreen()
+		if test == 'true':
+			gitf = "Testing"
+		else:
+			gitf = "Main"
 		while True:
 			print("Opening BioS")
 			print("Press enter the command 'e' to exit")
@@ -1067,6 +1230,7 @@ def devPage():
 			host_ip = socket.gethostbyname(host_name)
 			print("[1] USER NAME: " + l_n)
 			print("[2] PASSWORD: " + l_p)
+			print("[3] Current Repo Branch: " + gitf)
 			print("Hostname:", host_name)
 			print("LOCAL IPS: " + host_ip)
 			edit_b = input("Enter [?] to change setting: ")
@@ -1076,7 +1240,7 @@ def devPage():
 					f.writelines(edit_n)
 				print("Username Changed To " + edit_n)
 				input("Press Enter To Restart: ")
-				homePage()
+				devPage()
 				os.system('exit')
 
 			if edit_b == '2':
@@ -1085,21 +1249,79 @@ def devPage():
 					f.writelines(edit_p)
 				print("Password Changed To " + edit_p)
 				input("Press Enter To Restart: ")
-				homePage()
+				devPage()
 				os.system('exit')
+
+			if edit_b == '3':
+				clearScreen()
+				while True:
+					if test == 'true':
+						ax = input("Would you like to change to the main (stable) repo? ")
+						a2 = ax.lower()
+						if a2 == 'y':
+							while True:
+								asa = input("Are you sure you want to change back to the main branch? ")
+								das = asa.lower()
+								if das == 'y':
+									print("This command is a work in progress.")
+								elif das == 'n':
+									print("Returning to menu... ")
+									time.sleep(0.5)
+									clearScreen()
+									devPage()
+									break
+									break
+								else:
+									print("Not an option.")
+						elif a2 == 'n':
+							print("Not changing to (main (stable)) branch...")
+							print("Returning to menu...")
+							time.sleep(0.5)
+							clearScreen()
+							devPage()
+							break
+						else:
+							print("Not an option!")
+					else:
+						ax = input("Would you like to change to the testing (unstable) repo? ")
+						a2 = ax.lower()
+						if a2 == 'y':
+							while True:
+								asa = input("Are you sure you want to change to the testing branch? ")
+								das = asa.lower()
+								if das == 'y':
+									pass
+								elif das == 'n':
+									print("Returning to menu... ")
+									time.sleep(0.5)
+									clearScreen()
+									devPage()
+									break
+									break
+								else:
+									print("Not an option.")
+						elif a2 == 'n':
+							print("Not changing to (testing (unstable)) branch...")
+							print("Returning to menu...")
+							time.sleep(0.5)
+							clearScreen()
+							devPage()
+							break
+						else:
+							print("Not an option!")						
 
 			if edit_b == 'E':
 				clearScreen()
 				print("Leaving BIOS...")
 				time.sleep(0.5)
-				homePage()
+				devPage()
 				break
 
 			if edit_b == 'e':
 				clearScreen()
 				print("Leaving BIOS...")
 				time.sleep(0.5)
-				homePage()
+				devPage()
 				break
 
 			else:
@@ -1115,6 +1337,14 @@ def devPage():
 	elif select == '7':
 		clearScreen()
 		print(f"""
+{bcolors.OKBLUE}Patch 1.3.2.3:
+	{bcolors.OKGREEN}[+] Added Frame to start Github Branch Changing in BIOS
+	{bcolors.OKGREEN}[+] Better Import verifier
+	{bcolors.OKGREEN}[+] Missing Import Counter
+	{bcolors.OKGREEN}[+] Github Branch Checker
+	{bcolors.OKGREEN}[+] Added Frame to start Updater
+		{bcolors.FAIL}[-] This Frame is causing lots of bugs! (BEWARE!)
+	{bcolors.OKGREEN}[+] Fixed bug where bios would bring admins back to regular user menu
 {bcolors.OKBLUE}Patch 1.3.2.2:
 	{bcolors.OKGREEN}[+] Made commands able to type in uppercase and lowercase
 	{bcolors.OKGREEN}[+] Version Checking
@@ -1219,6 +1449,11 @@ def devPage():
 		clearScreen()
 		devSysInfo()
 	
+	elif select == '12':
+		clearScreen()
+		print("This feature has not been added yet, as we are experiencing issues with packages that will be required to do this.")
+		homePage()
+
 	else:
 		clearScreen()
 		errorHandle("Incorrect Command!", ErrorCodes.ErrCode1)
@@ -1347,7 +1582,7 @@ def devTermMain():
 	clearScreen()
 	cwd = os.getcwd()
 	print("Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.2.2")
+	print("Ver 1.3.2.3")
 	print("(DEVELOPER MODE: ACTIVATED) (ROOT: TRUE)")
 	def helpCom():
 		clearScreen()
@@ -1614,7 +1849,7 @@ def rootTerm():
 	clearScreen()
 	cwd = os.getcwd()
 	print(f"{bcolors.OKCYAN}Welcome to the Bear-Shell Terminal")
-	print("Ver 1.3.2.2")
+	print("Ver 1.3.2.3")
 	print("You're in the ROOT terminal, enter command 'exit' to return to menu.")
 	def helpCom():
 		clearScreen()
@@ -3252,7 +3487,7 @@ def sysInfo():
 	test = testing.read()
 	varss = open('data/version.data')
 	var = varss.read()
-	if var == '1.3.2.2':
+	if var == '1.3.2.3':
 		upDate = "Up-To-Date!"
 	else:
 		upDate = "Out-Of-Date!"
@@ -3290,7 +3525,7 @@ def devSysInfo():
 	test = testing.read()	
 	varss = open('data/version.data')
 	var = varss.read()
-	if var == '1.3.2.2':
+	if var == '1.3.2.3':
 		upDate = "Up-To-Date!"
 	else:
 		upDate = "Out-Of-Date!"

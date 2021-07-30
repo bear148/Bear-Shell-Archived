@@ -11,6 +11,9 @@ To uninstall the shell, run the command: ```make uninstall```
 ## Compatibility
 As of now, Bear-Shell is compatible with Windows and Linux. No plans have been made to make Macintosh compatibility.
 
+## Known Unstable Branch Bugs
+Right now, I am currently working on an updater so that a user doesnt have to clone the repo, cd into the directory, and all of that, but instead make an option for it in the menu. However, this has come with some bugs though. I'm currently having trouble installing the Github library so I can read files from a repo, which I need to check if the users current version is the same as the one in the repo. Make sure on startup you answer 'n' to the prompt when it asks you to install PyGitHub!!
+
 ## Prerequisites
 To use Bear-Shell, you'll need to install:
 - Python 3.*
@@ -43,24 +46,17 @@ In the most recent update, version 1.3.2.1, I added the calculator, import verif
 I wanted to add this feature because I thought about Bear-Shell's whole point, which is to be fast, efficient, and easy. Which before this update, you had to manually install some of the libraries/packages. Which isn't very easy, and efficient, so I made it so that all the user has to do is start the shell. (e.g. via ```make```)
 
 ## Newest Patches
-<b>The newest patch is v1.3.2.2</b>
+<b>The newest patch is v1.3.2.3</b>
 <br>
-<p>The newest patch included sys info, upercase commands now being lowercassed, and version is now checked upon startup and in the system info menu.</p>
+<p>The newest patch includes A LOT of things. Mostly just for debugging and some extra small things. In this patch, I added the frame to start on github branch changing, better import verficiation, a counter that counts missing imports, the ability to see what github branch you are using for your copy of the shell, the frame for the updater (allows user to update their ENTIRE bear-shell installation from the menu), and I fixed a bios bug.</p>
 
 ## Older Updates
+- Ver 1.3.2.2 (Patch)
 - Ver 1.3.2.1
 - Ver 1.3.1.1
 - Ver 1.3.0.1
 - Ver 1.3.0
-- Ver 1.2.9
-- Ver 1.2.8
-- Ver 1.2.7
-- Ver 1.2.6
-- Ver 1.2.5
-- Ver 1.2.4
-- Ver 1.2.3
-- Ver 1.2.2
-- Ver 1.2.1
+- Ver 1.2.9 -> 1.2.1
 - Ver 0.2.1
 - Ver 0.0.1
 
