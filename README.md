@@ -4,6 +4,9 @@ Bear-Shell is a command-line based shell developed by [Michael](https://github.c
 ## Why should I use Bear-Shell?
 I do not expect Bear-Shell to be used for real life applications, as it requires python 3 to be ran. In the future, I will more than likely be adding things like running commands as root, cd'ing into directories, and lots more. As of right now, it basically has the bare minimum to be used as, technically an os. With the new addition of the ls, and pwd command, you can now navigate even inside of the terminal.
 
+## Important Info
+If you would like to recieve more frequent, but less stable updates, you can also download Bear-Shell from the testing branch [here.](https://github.com/BizzyPythonBear/Bear-Shell/tree/testing) Please keep in mind however, these are less stable. So, there will be more bugs. All updates will go through the testing branch to get changed, debugged, and touched up before they reach the main branch. Therefore, if you'd like to use updates before they are polished and released, download from the [testing branch.](https://github.com/BizzyPythonBear/Bear-Shell/tree/testing)
+
 ## Running and installing
 To run/install the shell, run the command: ```make start```
 To uninstall the shell, run the command: ```make uninstall```
