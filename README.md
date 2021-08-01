@@ -7,6 +7,9 @@ I do not expect Bear-Shell to be used for real life applications, as it requires
 ## Important Info
 If you would like to recieve more frequent, but less stable updates, you can also download Bear-Shell from the testing branch [here.](https://github.com/BizzyPythonBear/Bear-Shell/tree/testing) Please keep in mind however, these are less stable. So, there will be more bugs. All updates will go through the testing branch to get changed, debugged, and touched up before they reach the main branch. Therefore, if you'd like to use updates before they are polished and released, download from the [testing branch.](https://github.com/BizzyPythonBear/Bear-Shell/tree/testing) Or, you can download the zip file with "unstable" in the name from [here.](https://github.com/BizzyPythonBear/Bear-Shell/releases)
 
+## Important Announcment!!
+Like I said, updates will be slow for this branch! if you'd like for frequent updates, please use the testing branch. Also, update 1.3.2.3 will be rolled out slowly since it is a LARGE update that adds quite a lot of new features. The wait will be worth it though!
+
 ## Running and installing
 To run/install the shell, run the command: ```make start```
 To uninstall the shell, run the command: ```make uninstall```
