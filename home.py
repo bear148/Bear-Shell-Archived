@@ -30,6 +30,7 @@ def startupVer(vers):
 		time.sleep(3)
 
 def checkImports():
+	import sys
 	try:
 		import time
 	except ImportError:
@@ -225,6 +226,7 @@ import sys
 import os
 import time
 import socket
+import dotenv
 
 def spinning_cursor():
 	while True:
@@ -1012,7 +1014,7 @@ def homePage():
 	elif select == '11':
 		clearScreen()
 		sysInfo()
-
+		
 	else:
 		error()
 
